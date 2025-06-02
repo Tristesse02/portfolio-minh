@@ -2,6 +2,7 @@ import React from "react";
 import { ContentItem } from "@/types";
 import { Card } from "@/components/ui/card";
 import { Heart, MessageCircle } from "lucide-react";
+import styles from "../../styles/SocialMusicPortfolio/ContentList.module.css";
 
 interface Props {
   items: ContentItem[];
@@ -11,24 +12,24 @@ interface Props {
 
 export default function ContentList({ items, currentId, onSelect }: Props) {
   return (
-    <div className="space-y-3">
+    <div className={styles.listWrapper}>
       {items.map((item) => (
         <Card
           key={item.id}
-          className={`p-4 cursor-pointer transition-all hover:shadow-md ${
-            currentId === item.id ? "ring-2 ring-purple-500" : ""
+          className={`${styles.card} ${
+            currentId === item.id ? styles.cardActive : ""
           }`}
           onClick={() => onSelect(item)}
         >
-          <div className="flex items-center gap-3">
-            <div className="w-3 h-3 bg-green-400 rounded-full" />
-            <span className="font-medium">{item.title}</span>
-            <div className="ml-auto flex items-center gap-4 text-sm text-gray-500">
-              <span className="flex items-center gap-1">
+          <div className={styles.cardInner}>
+            <div className={styles.statusDot} />
+            <span className={styles.cardTitle}>{item.title}</span>
+            <div className={styles.cardStats}>
+              <span className={styles.statGroup}>
                 <Heart className="w-4 h-4" />
                 {item.likes}
               </span>
-              <span className="flex items-center gap-1">
+              <span className={styles.statGroup}>
                 <MessageCircle className="w-4 h-4" />
                 {item.comments}
               </span>

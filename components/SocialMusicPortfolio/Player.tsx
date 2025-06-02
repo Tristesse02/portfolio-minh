@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ContentItem } from "@/types";
 import Image from "next/image";
 import { Heart, Pause, Play } from "lucide-react";
+import styles from "../../styles/SocialMusicPortfolio/Player.module.css";
 
 interface Props {
   content: ContentItem;
@@ -36,8 +37,8 @@ export default function Player({
   };
 
   return (
-    <div className="mb-6 overflow-hidden rounded-md shadow">
-      <div className="relative">
+    <div className={styles.playerContainer}>
+      <div className={styles.imageWrapper}>
         <Image
           src={content.imageUrl}
           alt={content.title}
@@ -45,13 +46,13 @@ export default function Player({
           height={400}
           className="w-full h-80 object-cover"
         />
-        <div className="absolute bottom-4 left-4 right-4">
-          <div className="bg-black/50 backdrop-blur-sm rounded-lg p-4 opacity-30 hover:opacity-100 transition-opacity duration-300">
-            <div className="flex items-center gap-4 mb-2">
+        <div className={styles.overlay}>
+          <div className={styles.controls}>
+            <div className={styles.controlsTop}>
               <Button
                 onClick={onPlayPause}
                 size="sm"
-                className="w-10 h-10 rounded-full bg-white text-black hover:bg-white/90"
+                className={styles.playButton}
               >
                 {isPlaying ? (
                   <Pause className="w-4 h-4" />
@@ -59,28 +60,22 @@ export default function Player({
                   <Play className="w-4 h-4 ml-0.5" />
                 )}
               </Button>
-              <div className="flex-1">
-                <div className="w-full bg-white/20 rounded-full h-1">
-                  <div
-                    className="bg-white h-1 rounded-full transition-all duration-1000"
-                    style={{ width: `${(currentTime / duration) * 100}%` }}
-                  />
-                </div>
+              <div className={styles.progressBar}>
+                <div
+                  className={styles.progress}
+                  style={{ width: `${(currentTime / duration) * 100}%` }}
+                />
               </div>
-              <Button
-                size="sm"
-                variant="ghost"
-                className="text-white hover:bg-white/20"
-              >
+              <Button size="sm" variant="ghost" className={styles.iconButton}>
                 <Heart className="w-4 h-4" />
               </Button>
-              <span className="text-white text-sm">
+              <span className={styles.timestamp}>
                 {formatTime(currentTime)} / {formatTime(duration)}
               </span>
             </div>
-            <div className="text-white">
-              <h3 className="font-semibold">{content.title}</h3>
-              <p className="text-sm text-white/80">Now Playing</p>
+            <div className={styles.trackInfo}>
+              <h3>{content.title}</h3>
+              <p>Now Playing</p>
             </div>
           </div>
         </div>

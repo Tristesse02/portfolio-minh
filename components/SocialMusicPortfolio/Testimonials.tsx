@@ -1,6 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Testimonial } from "@/types";
 import React from "react";
+import styles from "../../styles/SocialMusicPortfolio/Testimonials.module.css";
 
 interface Props {
   testimonials: Testimonial[];
@@ -8,22 +9,22 @@ interface Props {
 
 export default function Testimonials({ testimonials }: Props) {
   return (
-    <div className="space-y-3">
+    <div className={styles.testimonialsWrapper}>
       {testimonials.map((t, i) => (
-        <div key={i} className="bg-gray-100 rounded-lg p-3">
-          <div className="flex items-center gap-2 mb-2">
-            <Avatar className="w-8 h-8">
+        <div key={i} className={styles.testimonialCard}>
+          <div className={styles.header}>
+            <Avatar style={{ width: "2rem", height: "2rem" }}>
               <AvatarImage src={t.avatar} />
               <AvatarFallback>{t.name[0]}</AvatarFallback>
             </Avatar>
             <div>
-              <div className="font-semibold text-sm">{t.name}</div>
-              <div className="text-xs text-gray-600">
+              <div className={styles.name}>{t.name}</div>
+              <div className={styles.role}>
                 {t.role} {t.company}
               </div>
             </div>
           </div>
-          <p className="text-sm text-gray-700">{t.message}</p>
+          <p className={styles.message}>{t.message}</p>
         </div>
       ))}
     </div>

@@ -1,0 +1,82 @@
+.playerContainer {
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.imageWrapper {
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+}
+
+.controls {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  opacity: 0.3;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.controls:hover {
+  opacity: 1;
+}
+
+.controlsTop {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.playButton {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  background-color: white;
+  color: black;
+}
+
+.progressBar {
+  flex: 1;
+  background-color: rgba(255, 255, 255, 0.2);
+  height: 0.25rem;
+  border-radius: 9999px;
+}
+
+.progress {
+  background-color: white;
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 1s ease;
+}
+
+.iconButton {
+  color: white;
+  background: none;
+}
+
+.timestamp {
+  color: white;
+  font-size: 0.875rem;
+}
+
+.trackInfo {
+  color: white;
+}
+
+.trackInfo h3 {
+  font-weight: 600;
+}
+
+.trackInfo p {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.8);
+}

@@ -1,0 +1,17 @@
+.nav {
+  display: flex;
+  gap: 2rem; /* Tailwind gap-8 */
+}
+
+.tabButton {
+  font-weight: 500; /* Tailwind font-medium */
+  color: #4b5563; /* Tailwind text-gray-600 */
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.tabButtonActive {
+  color: #7c3aed; /* Tailwind text-purple-600 */
+  border-bottom: 2px solid #7c3aed; /* Tailwind border-purple-600 */
+}

@@ -1,0 +1,51 @@
+.listWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.card {
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cardHover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cardActive {
+  box-shadow: 0 0 0 2px #a855f7; /* Tailwind ring-purple-500 */
+}
+
+.cardInner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.statusDot {
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: #4ade80; /* Tailwind bg-green-400 */
+  border-radius: 9999px;
+}
+
+.cardTitle {
+  font-weight: 500;
+}
+
+.cardStats {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.statGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}

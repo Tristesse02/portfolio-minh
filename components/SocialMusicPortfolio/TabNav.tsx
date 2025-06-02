@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import styles from "../../styles/SocialMusicPortfolio/TabNav.module.css";
 
 interface Props {
   activeTab: "about" | "projects" | "experience";
@@ -9,15 +10,13 @@ interface Props {
 
 export default function TabNav({ activeTab, setActiveTab }: Props) {
   return (
-    <nav className="flex gap-8">
+    <nav className={styles.nav}>
       {(["about", "projects", "experience"] as const).map((tab) => (
         <button
           key={tab}
           onClick={() => setActiveTab(tab)}
-          className={`font-medium ${
-            activeTab === tab
-              ? "text-purple-600 border-b-2 border-purple-600"
-              : "text-gray-600"
+          className={`${styles.tabButton} ${
+            activeTab === tab ? styles.tabButtonActive : ""
           }`}
         >
           {tab === "about"

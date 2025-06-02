@@ -11,6 +11,7 @@ import Player from "@/components/SocialMusicPortfolio/Player";
 import ContentList from "@/components/SocialMusicPortfolio/ContentList";
 import DescriptionPanel from "@/components/SocialMusicPortfolio/DescriptionPanel";
 import Testimonials from "@/components/SocialMusicPortfolio/Testimonials";
+import styles from "../../styles/SocialMusicPortfolio/index.module.css";
 
 export default function SocialMusicPortfolio() {
   const contentItems = rawContentItems as ContentItem[];
@@ -52,12 +53,12 @@ export default function SocialMusicPortfolio() {
   }, [isPlaying, duration]);
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <header className="bg-white border-b border-gray-200 px-4 py-3">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">MV</span>
+    <div className={styles.pageWrapper}>
+      <header className={styles.header}>
+        <div className={styles.headerInner}>
+          <div className={styles.logo}>
+            <div className={styles.logoBox}>
+              <span className={styles.logoText}>MV</span>
             </div>
             <span className="font-semibold text-lg">Minh Vu</span>
           </div>
@@ -65,12 +66,12 @@ export default function SocialMusicPortfolio() {
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto grid grid-cols-12 gap-6 p-6">
-        <div className="col-span-3">
+      <div className={styles.pageContent}>
+        <div className={styles.leftCol}>
           <SidebarProfile />
         </div>
 
-        <div className="col-span-6">
+        <div className={styles.centerCol}>
           <Player
             content={currentContent}
             isPlaying={isPlaying}
@@ -78,7 +79,7 @@ export default function SocialMusicPortfolio() {
             duration={duration}
             onPlayPause={handlePlayPause}
           />
-          <h2 className="text-xl font-bold mb-4 capitalize">
+          <h2 className={styles.contentHeading}>
             {activeTab === "about" ? "Get to know me" : activeTab}
           </h2>
           <ContentList
@@ -88,9 +89,9 @@ export default function SocialMusicPortfolio() {
           />
         </div>
 
-        <div className="col-span-3 space-y-4">
+        <div className={styles.rightCol}>
           <DescriptionPanel content={currentContent} />
-          <div className="p-4 bg-white rounded-md shadow">
+          <div className={styles.testimonialsCard}>
             <h3 className="font-bold mb-4">What people think about me</h3>
             <Testimonials testimonials={testimonials} />
           </div>
