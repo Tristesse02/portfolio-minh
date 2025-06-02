@@ -4,8 +4,8 @@
     "title": "About me",
     "category": "about",
     "description": "Passionate full-stack developer with a love for creating innovative solutions. I enjoy turning complex problems into simple, beautiful designs. And I also love Nina a lot so stop complaining guys",
-    "audioUrl": "/placeholder-audio.mp3",
-    "imageUrl": "/placeholder.svg?height=400&width=600",
+    "audioUrl": "/audio/2002.mp3",
+    "imageUrl": "/image/AboutMeT.jpg",
     "likes": 124,
     "comments": 23
   },
