@@ -92,7 +92,7 @@ export default function SocialMusicPortfolio() {
         <div className={styles.rightCol}>
           <DescriptionPanel content={currentContent} />
           <div className={styles.testimonialsCard}>
-            <h3 className="font-bold mb-4">What people think about me</h3>
+            <h3 className="font-bold mb-4">Testimonial</h3>
             <Testimonials testimonials={testimonials} />
           </div>
         </div>

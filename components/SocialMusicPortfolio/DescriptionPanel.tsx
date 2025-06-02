@@ -11,7 +11,7 @@ export default function DescriptionPanel({ content }: Props) {
     <div className={styles.panelWrapper}>
       <div className={styles.descriptionBox}>
         <h3 className={styles.descriptionHeading}>
-          Full Description of the projects/work experiences goes here!
+          Lyrics
         </h3>
         <p className={styles.descriptionText}>{content.description}</p>
         <p className={styles.placeholderText}>Lorem Ipsum</p>

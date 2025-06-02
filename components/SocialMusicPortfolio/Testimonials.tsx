@@ -15,7 +15,7 @@ export default function Testimonials({ testimonials }: Props) {
           <div className={styles.header}>
             <Avatar style={{ width: "2rem", height: "2rem" }}>
               <AvatarImage src={t.avatar} />
-              <AvatarFallback>{t.name[0]}</AvatarFallback>
+              <AvatarFallback style={{ backgroundColor: "#dcdddf" }}>{t.name[0]}</AvatarFallback>
             </Avatar>
             <div>
               <div className={styles.name}>{t.name}</div>

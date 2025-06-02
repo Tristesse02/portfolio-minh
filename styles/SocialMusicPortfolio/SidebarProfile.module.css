@@ -1,16 +1,26 @@
 .sidebar {
+  background-color: #ffffff;
+  border-radius: 0.5rem;
   padding: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.profileContent {
   text-align: center;
 }
 
 .avatar {
   width: 5rem;
   height: 5rem;
-  margin: 0 auto 0.75rem auto;
+  margin: 0 auto 0.75rem;
 }
 
 .name {
   font-weight: 600;
+  font-size: 1rem;
 }
 
 .role {
@@ -22,5 +32,5 @@
   display: flex;
   justify-content: center;
   gap: 1rem;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }

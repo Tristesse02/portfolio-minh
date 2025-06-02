@@ -59,8 +59,14 @@
 }
 
 .iconButton {
+  height: 36px;
+  width: 40px;
   color: white;
   background: none;
+}
+
+.iconButton:hover {
+  background-color: rgb(255 255 255 / 0.2);
 }
 
 .timestamp {
@@ -79,4 +85,23 @@
 .trackInfo p {
   font-size: 0.875rem;
   color: rgba(255, 255, 255, 0.8);
+}
+
+.infoButton {
+  height: 36px;
+  width: 40px;
+  color: white;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+  padding: 0.25rem;
+  border-radius: 0.375rem;
+}
+
+.infoButton:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.icon {
+  width: 1rem;
+  height: 1rem;
 }
