@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Bao Dang",
+    "role": "Software Engineer",
+    "company": "Google",
+    "message": "Minh is a really passionate person when it comes to his job list",
+    "avatar": "/placeholder.svg?height=40&width=40"
+  },
+  {
+    "name": "Nina Vo",
+    "role": "Software Engineer",
+    "company": "Meta",
+    "message": "Minh is a really passionate person when it comes to his job list",
+    "avatar": "/placeholder.svg?height=40&width=40"
+  },
+  {
+    "name": "ZipZop",
+    "role": "Software Engineer",
+    "company": "Nvidia",
+    "message": "Minh is a really passionate person when it comes to his job list",
+    "avatar": "/placeholder.svg?height=40&width=40"
+  }
+]

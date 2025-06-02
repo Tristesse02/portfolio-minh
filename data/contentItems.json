@@ -1,0 +1,92 @@
+[
+  {
+    "id": "about-me",
+    "title": "About me",
+    "category": "about",
+    "description": "Passionate full-stack developer with a love for creating innovative solutions. I enjoy turning complex problems into simple, beautiful designs.",
+    "audioUrl": "/placeholder-audio.mp3",
+    "imageUrl": "/placeholder.svg?height=400&width=600",
+    "likes": 124,
+    "comments": 23
+  },
+  {
+    "id": "free-time",
+    "title": "My Free Time",
+    "category": "about",
+    "description": "When I'm not coding, you'll find me exploring new music, hiking trails, or experimenting with photography. I believe in work-life balance.",
+    "audioUrl": "/placeholder-audio.mp3",
+    "imageUrl": "/placeholder.svg?height=400&width=600",
+    "likes": 89,
+    "comments": 15
+  },
+  {
+    "id": "umass",
+    "title": "My Time at UMass",
+    "category": "about",
+    "description": "Computer Science graduate from UMass Amherst. Active in hackathons, coding competitions, and tech communities.",
+    "audioUrl": "/placeholder-audio.mp3",
+    "imageUrl": "/placeholder.svg?height=400&width=600",
+    "likes": 156,
+    "comments": 31
+  },
+  {
+    "id": "operating-system",
+    "title": "Operating System",
+    "category": "projects",
+    "description": "Built a custom operating system kernel with memory management, process scheduling, and file system implementation.",
+    "audioUrl": "/placeholder-audio.mp3",
+    "imageUrl": "/placeholder.svg?height=400&width=600",
+    "likes": 203,
+    "comments": 45
+  },
+  {
+    "id": "web-dev",
+    "title": "Web Dev",
+    "category": "projects",
+    "description": "Full-stack e-commerce platform with React, Node.js, and PostgreSQL. Handles 10k+ concurrent users.",
+    "audioUrl": "/placeholder-audio.mp3",
+    "imageUrl": "/placeholder.svg?height=400&width=600",
+    "likes": 178,
+    "comments": 38
+  },
+  {
+    "id": "ml-project",
+    "title": "ML Project",
+    "category": "projects",
+    "description": "Machine learning model for predictive analytics using Python, TensorFlow, and deployed on AWS.",
+    "audioUrl": "/placeholder-audio.mp3",
+    "imageUrl": "/placeholder.svg?height=400&width=600",
+    "likes": 234,
+    "comments": 52
+  },
+  {
+    "id": "meta",
+    "title": "Meta",
+    "category": "experience",
+    "description": "Software Engineer Intern - Worked on React Native components for Instagram, improving user engagement by 15%.",
+    "audioUrl": "/placeholder-audio.mp3",
+    "imageUrl": "/placeholder.svg?height=400&width=600",
+    "likes": 312,
+    "comments": 67
+  },
+  {
+    "id": "google",
+    "title": "Google",
+    "category": "experience",
+    "description": "Frontend Developer - Contributed to Google Cloud Console, optimizing performance and user experience.",
+    "audioUrl": "/placeholder-audio.mp3",
+    "imageUrl": "/placeholder.svg?height=400&width=600",
+    "likes": 289,
+    "comments": 54
+  },
+  {
+    "id": "amazon",
+    "title": "Amazon",
+    "category": "experience",
+    "description": "Full Stack Developer - Built internal tools for AWS team, reducing deployment time by 40%.",
+    "audioUrl": "/placeholder-audio.mp3",
+    "imageUrl": "/placeholder.svg?height=400&width=600",
+    "likes": 267,
+    "comments": 43
+  }
+]
