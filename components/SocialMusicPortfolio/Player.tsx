@@ -1,9 +1,10 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ContentItem } from "@/types";
 import Image from "next/image";
-import { Heart, Pause, Play } from "lucide-react";
+import { Heart, Pause, Play, Volume2 } from "lucide-react";
 import styles from "../../styles/SocialMusicPortfolio/Player.module.css";
+import Slider from "../../components/ui/Slider";
 
 interface Props {
   content: ContentItem;
@@ -21,6 +22,7 @@ export default function Player({
   onPlayPause,
 }: Props) {
   const audioRef = useRef<HTMLAudioElement>(null);
+  const [volume, setVolume] = useState([75]);
 
   useEffect(() => {
     if (isPlaying) {
@@ -34,6 +36,14 @@ export default function Player({
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
     return `${minutes}:${seconds.toString().padStart(2, "0")}`;
+  };
+
+  const handleVolumeChange = (value: number[]) => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    setVolume(value);
+    audio.volume = value[0] / 200;
   };
 
   return (
@@ -66,6 +76,21 @@ export default function Player({
                   style={{ width: `${(currentTime / duration) * 100}%` }}
                 />
               </div>
+              <span className={styles.timestamp}>
+                {formatTime(currentTime)} / {formatTime(duration)}
+              </span>
+              <div className="flex items-center gap-2">
+                <Volume2 className="w-4 h-4 text-white" />
+                <Slider
+                  value={volume}
+                  onValueChange={handleVolumeChange}
+                  max={100}
+                  step={1}
+                  className="w-20"
+                />
+              </div>
+            </div>
+            <div className={styles.bottomRightControls}>
               <Button size="sm" variant="ghost" className={styles.iconButton}>
                 <Heart className="w-4 h-4" />
               </Button>
@@ -91,9 +116,6 @@ export default function Player({
                   />
                 </svg>
               </Button>
-              <span className={styles.timestamp}>
-                {formatTime(currentTime)} / {formatTime(duration)}
-              </span>
             </div>
             <div className={styles.trackInfo}>
               <h3>{content.title}</h3>

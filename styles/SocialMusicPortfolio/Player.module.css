@@ -23,6 +23,7 @@
   padding: 1rem;
   opacity: 0.3;
   transition: opacity 0.3s ease-in-out;
+  position: relative; /* Needed for bottomRightControls positioning */
 }
 
 .controls:hover {
@@ -104,4 +105,12 @@
 .icon {
   width: 1rem;
   height: 1rem;
+}
+
+.bottomRightControls {
+  position: absolute;
+  bottom: 0.75rem;
+  right: 1rem;
+  display: flex;
+  gap: 0.5rem;
 }
