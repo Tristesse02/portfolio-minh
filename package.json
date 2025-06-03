@@ -2,9 +2,12 @@
   "name": "portfolio-minh",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://github.com/Tristesse02/portfolio-minh",
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "next build && next export",
+    "deploy": "gh-pages -d out",
+    "predeploy": "npm run build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -28,6 +31,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.2.4",
+    "gh-pages": "^6.3.0",
     "tailwindcss": "^4",
     "tw-animate-css": "^1.3.3",
     "typescript": "^5"
