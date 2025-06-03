@@ -2,10 +2,10 @@
   "name": "portfolio-minh",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/Tristesse02/portfolio-minh",
+  "homepage": "https://tristesse02.github.io/portfolio-minh/",
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build && next export",
+    "build": "next build",
     "deploy": "gh-pages -d out",
     "predeploy": "npm run build",
     "start": "next start",

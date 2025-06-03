@@ -1,13 +1,14 @@
 import ArticleClient from "./ArticleClient"; // your actual component
-import { articleData } from "./ArticleClient"; // adjust path if needed
+import articleData from "../../../data/articleData.json" assert { type: "json" };
 
 type PageProps = {
-  params: { value: string };
+  params: Promise<{ id: string }> & { id: string };
 };
 
-export default async function Page(promise: PageProps) {
+export default function Page(promise: PageProps) {
   const { params } = promise;
   console.log("minhdz", params);
+  console.log("minhdz", articleData);
   return <ArticleClient params={params} />; // or pass just id if you prefer
 }
 

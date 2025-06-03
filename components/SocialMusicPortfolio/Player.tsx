@@ -99,7 +99,7 @@ export default function Player({
                 variant="ghost"
                 className={styles.infoButton}
                 onClick={() =>
-                  (window.location.href = `/article/${content.id}?playing=${isPlaying}&time=${currentTime}`)
+                  (window.location.href = `/article/${content.id}/?playing=${isPlaying}&time=${currentTime}`)
                 }
               >
                 <svg

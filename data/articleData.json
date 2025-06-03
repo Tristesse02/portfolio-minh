@@ -1,0 +1,135 @@
+{
+  "about-me": {
+    "id": "about-me",
+    "title": "About me",
+    "category": "about",
+    "description": "Passionate full-stack developer with a love for creating innovative solutions.",
+    "fullContent": {
+      "introduction": "Welcome to my world of code and creativity! I'm a passionate full-stack developer who believes in the power of technology to transform ideas into reality.",
+      "sections": [
+        {
+          "title": "My Journey",
+          "content": "My coding journey started in college when I wrote my first 'Hello World' program. What began as curiosity quickly evolved into a deep passion for problem-solving and building digital experiences that matter.",
+          "image": "/placeholder.svg?height=300&width=500"
+        },
+        {
+          "title": "Philosophy",
+          "content": "I believe that great software is not just about clean code, but about understanding user needs and creating solutions that are both functional and delightful."
+        },
+        {
+          "title": "Beyond Code",
+          "content": "When I'm not coding, you'll find me exploring new music genres, hiking mountain trails, or experimenting with photography. I believe that diverse experiences fuel creativity and make me a better developer.",
+          "image": "/placeholder.svg?height=300&width=500"
+        }
+      ],
+      "conclusion": "I'm always excited to take on new challenges and collaborate with like-minded individuals who share a passion for innovation and excellence.",
+      "technologies": [
+        "JavaScript",
+        "TypeScript",
+        "React",
+        "Node.js",
+        "Python",
+        "AWS"
+      ]
+    },
+    "audioUrl": "/placeholder-audio.mp3",
+    "imageUrl": "/placeholder.svg?height=400&width=600",
+    "likes": 124,
+    "comments": 23
+  },
+  "web-dev": {
+    "id": "web-dev",
+    "title": "E-Commerce Platform",
+    "category": "projects",
+    "description": "Full-stack e-commerce platform with React, Node.js, and PostgreSQL.",
+    "fullContent": {
+      "introduction": "This project was born out of a need to create a scalable, user-friendly e-commerce solution that could handle high traffic while providing an exceptional shopping experience.",
+      "sections": [
+        {
+          "title": "The Challenge",
+          "content": "The client needed a platform that could handle 10,000+ concurrent users during peak shopping seasons while maintaining fast load times and a smooth checkout process.",
+          "image": "/placeholder.svg?height=300&width=500"
+        },
+        {
+          "title": "Technical Architecture",
+          "content": "I designed a microservices architecture using React for the frontend, Node.js with Express for the API layer, and PostgreSQL for data persistence. Redis was implemented for caching and session management.",
+          "image": "/placeholder.svg?height=300&width=500"
+        },
+        {
+          "title": "Key Features",
+          "content": "The platform includes real-time inventory management, advanced search with filters, personalized recommendations, secure payment processing with Stripe, and an admin dashboard for analytics."
+        },
+        {
+          "title": "Performance Optimization",
+          "content": "Implemented lazy loading, image optimization, database indexing, and CDN integration. The result was a 40% improvement in page load times and 99.9% uptime.",
+          "image": "/placeholder.svg?height=300&width=500"
+        }
+      ],
+      "conclusion": "This project taught me the importance of scalable architecture and user-centered design. The platform now serves thousands of customers daily and has processed over $2M in transactions.",
+      "technologies": [
+        "React",
+        "Node.js",
+        "PostgreSQL",
+        "Redis",
+        "Stripe",
+        "AWS",
+        "Docker"
+      ],
+      "links": {
+        "github": "https://github.com/your-username/ecommerce-platform",
+        "demo": "https://demo.yourproject.com"
+      }
+    },
+    "audioUrl": "/placeholder-audio.mp3",
+    "imageUrl": "/placeholder.svg?height=400&width=600",
+    "likes": 178,
+    "comments": 38
+  },
+  "meta": {
+    "id": "meta",
+    "title": "Software Engineer Intern at Meta",
+    "category": "experience",
+    "description": "Worked on React Native components for Instagram, improving user engagement by 15%.",
+    "fullContent": {
+      "introduction": "My internship at Meta was a transformative experience where I contributed to one of the world's most popular social media platforms, reaching billions of users globally.",
+      "sections": [
+        {
+          "title": "The Team",
+          "content": "I joined the Instagram Mobile team, working alongside senior engineers, designers, and product managers to enhance the user experience for Instagram's mobile app.",
+          "image": "/placeholder.svg?height=300&width=500"
+        },
+        {
+          "title": "Project: Enhanced Story Features",
+          "content": "My main project involved developing new React Native components for Instagram Stories, focusing on improving user engagement and content creation tools."
+        },
+        {
+          "title": "Technical Implementation",
+          "content": "I built reusable components using React Native, implemented smooth animations with Reanimated, and optimized performance for both iOS and Android platforms.",
+          "image": "/placeholder.svg?height=300&width=500"
+        },
+        {
+          "title": "Impact & Results",
+          "content": "The features I developed led to a 15% increase in user engagement with Stories and were rolled out to over 100 million users during my internship."
+        },
+        {
+          "title": "Learning & Growth",
+          "content": "Working at Meta taught me about large-scale system design, A/B testing, and the importance of data-driven decision making in product development.",
+          "image": "/placeholder.svg?height=300&width=500"
+        }
+      ],
+      "conclusion": "This experience solidified my passion for mobile development and taught me how to build products that impact millions of users worldwide.",
+      "technologies": [
+        "React Native",
+        "JavaScript",
+        "iOS",
+        "Android",
+        "GraphQL",
+        "Relay"
+      ]
+    },
+    "audioUrl": "/placeholder-audio.mp3",
+    "imageUrl": "/placeholder.svg?height=400&width=600",
+    "likes": 312,
+    "comments": 67
+  }
+}
