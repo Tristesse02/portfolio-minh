@@ -7,6 +7,7 @@ export interface ContentItem {
   imageUrl: string;
   likes: number;
   comments: number;
+  percentage: number;
 }
 
 export interface Testimonial {

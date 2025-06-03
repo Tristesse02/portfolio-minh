@@ -22,7 +22,7 @@ export default function Player({
   onPlayPause,
 }: Props) {
   const audioRef = useRef<HTMLAudioElement>(null);
-  const [volume, setVolume] = useState([75]);
+  const [volume, setVolume] = useState([15]);
 
   useEffect(() => {
     if (isPlaying) {
@@ -54,7 +54,7 @@ export default function Player({
           alt={content.title}
           width={600}
           height={400}
-          className="w-full h-80 object-cover"
+          className={`w-full h-80 object-cover object-[center_${content.percentage}%]`}
         />
         <div className={styles.overlay}>
           <div className={styles.controls}>

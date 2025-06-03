@@ -10,11 +10,17 @@ export default function DescriptionPanel({ content }: Props) {
   return (
     <div className={styles.panelWrapper}>
       <div className={styles.descriptionBox}>
-        <h3 className={styles.descriptionHeading}>
-          Lyrics
-        </h3>
-        <p className={styles.descriptionText}>{content.description}</p>
-        <p className={styles.placeholderText}>Lorem Ipsum</p>
+        <h3 className={styles.descriptionHeading}>Lyrics</h3>
+        <p className={styles.descriptionText}>
+          <p className={styles.descriptionText}>
+            {content.description.split("\n").map((line, index) => (
+              <span key={index}>
+                {line}
+                <br />
+              </span>
+            ))}
+          </p>
+        </p>
       </div>
       <div className={styles.statsBox}>
         <div className={styles.statsGrid}>
