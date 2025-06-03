@@ -6,7 +6,7 @@ type PageProps = {
 };
 
 export default async function Page(promise: PageProps) {
-  const { params } = promise; // ✅ unwrap the Promise
+  const { params } = promise;
   console.log("minhdz", params);
   return <ArticleClient params={params} />; // or pass just id if you prefer
 }
