@@ -12,14 +12,13 @@ export default function DescriptionPanel({ content }: Props) {
       <div className={styles.descriptionBox}>
         <h3 className={styles.descriptionHeading}>Lyrics</h3>
         <p className={styles.descriptionText}>
-          <p className={styles.descriptionText}>
-            {content.description.split("\n").map((line, index) => (
-              <span key={index}>
-                {line}
-                <br />
-              </span>
-            ))}
-          </p>
+          {content.description.split("\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              <br />
+              <br />
+            </span>
+          ))}
         </p>
       </div>
       <div className={styles.statsBox}>
