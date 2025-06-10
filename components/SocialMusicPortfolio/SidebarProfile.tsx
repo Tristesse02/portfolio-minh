@@ -1,7 +1,8 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import React from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Share } from "lucide-react";
-import React from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import styles from "../../styles/SocialMusicPortfolio/SidebarProfile.module.css";
 
 export default function SidebarProfile() {

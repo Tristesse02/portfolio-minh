@@ -70,9 +70,63 @@
   text-transform: capitalize;
 }
 
+.headerRow {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
 .testimonialsCard {
   padding: 1rem;
   background-color: white;
   border-radius: 0.375rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.addUser {
+  
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.45rem 0.5rem 0.45rem 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.addUser:hover {
+  background-color: oklch(0.97 0 0);
+  border-radius: 5px;
+  display: block;
+  font-size: 0.75rem;
+}
+
+.tooltipWrapper {
+  margin-left: auto;
+  position: relative;
+  display: inline-block;
+}
+
+.tooltipText {
+  visibility: hidden;
+  opacity: 0;
+  width: max-content;
+  max-width: 220px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.5rem;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* above the button */
+  left: 50%;
+  transform: translateX(-50%);
+  transition: opacity 0.2s ease;
+  font-size: 0.75rem;
+  pointer-events: none;
+  white-space: pre-wrap;
+}
+
+.tooltipWrapper:hover .tooltipText {
+  visibility: visible;
+  opacity: 1;
 }
