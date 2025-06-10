@@ -55,7 +55,8 @@ export default function SocialMusicPortfolio() {
           // Expired
           localStorage.removeItem("testimonialAuthorized");
         }
-      } catch (_) {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      } catch (e) {
         localStorage.removeItem("testimonialAuthorized"); // fallback
       }
     }
