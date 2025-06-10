@@ -4,7 +4,6 @@
 import { ContentItem } from "@/types";
 import { UserPlus } from "lucide-react";
 import { useState, useEffect } from "react";
-// import testimonials from "@/data/testimonials.json";
 import rawContentItems from "@/data/contentItems.json" assert { type: "json" };
 import SidebarProfile from "@/components/SocialMusicPortfolio/SidebarProfile";
 import TabNav from "@/components/SocialMusicPortfolio/TabNav";
@@ -56,7 +55,7 @@ export default function SocialMusicPortfolio() {
           // Expired
           localStorage.removeItem("testimonialAuthorized");
         }
-      } catch (e) {
+      } catch (_) {
         localStorage.removeItem("testimonialAuthorized"); // fallback
       }
     }

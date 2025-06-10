@@ -2,9 +2,6 @@
 
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
-import { supabase } from "@/lib/supabaseClient";
-
-const SECRET_PASSPHRASE = "TRUSTED_GUEST_2025"; // <-- replace with your secret
 
 export default function TestimonialModal({
   isOpen,
@@ -16,7 +13,6 @@ export default function TestimonialModal({
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
   const [company, setCompany] = useState("");
-  const [meta, setMeta] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
