@@ -48,3 +48,16 @@
   font-size: 1.125rem;
   font-weight: 700;
 }
+
+.wordWrapper {
+  display: inline-block;
+}
+
+.word {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+
+.wordVisible {
+  opacity: 1;
+}
