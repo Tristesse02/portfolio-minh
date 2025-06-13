@@ -4,9 +4,10 @@ import styles from "../../styles/SocialMusicPortfolio/DescriptionPanel.module.cs
 
 interface Props {
   content: ContentItem;
+  setIsAnimating: (value: boolean) => void;
 }
 
-export default function DescriptionPanel({ content }: Props) {
+export default function DescriptionPanel({ content, setIsAnimating }: Props) {
   const wordsArray = content.description.split(" ");
   console.log(wordsArray);
   const [visible, setVisible] = useState<boolean[]>(
@@ -14,15 +15,30 @@ export default function DescriptionPanel({ content }: Props) {
   );
 
   useEffect(() => {
+    setVisible(Array(wordsArray.length).fill(false));
+    setIsAnimating(true);
+
+    const timeouts: NodeJS.Timeout[] = [];
+
     wordsArray.forEach((_, i) => {
-      setTimeout(() => {
+      const timeout = setTimeout(() => {
         setVisible((prev) => {
           const updated = [...prev];
           updated[i] = true;
+
+          // Unlock only after the final word fades in
+          if (i === wordsArray.length - 1) {
+            setTimeout(() => setIsAnimating(false), 200);
+          }
+
           return updated;
         });
-      }, i * 100); // 100ms delay per word
+      }, i * 100);
+
+      timeouts.push(timeout);
     });
+
+    return () => timeouts.forEach(clearTimeout); // clean up if unmounted
   }, [content.description]);
 
   return (

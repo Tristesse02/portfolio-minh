@@ -8,9 +8,15 @@ interface Props {
   items: ContentItem[];
   currentId: string;
   onSelect: (item: ContentItem) => void;
+  isDisabled?: boolean;
 }
 
-export default function ContentList({ items, currentId, onSelect }: Props) {
+export default function ContentList({
+  items,
+  currentId,
+  onSelect,
+  isDisabled,
+}: Props) {
   return (
     <div className={styles.listWrapper}>
       {items.map((item) => (
@@ -18,8 +24,10 @@ export default function ContentList({ items, currentId, onSelect }: Props) {
           key={item.id}
           className={`${styles.card} ${
             currentId === item.id ? styles.cardActive : ""
-          }`}
-          onClick={() => onSelect(item)}
+          } ${isDisabled ? styles.cardDisabled : ""}`}
+          onClick={() => {
+            if (!isDisabled) onSelect(item);
+          }}
         >
           <div className={styles.cardInner}>
             <div className={styles.statusDot} />

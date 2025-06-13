@@ -49,3 +49,9 @@
   align-items: center;
   gap: 0.25rem;
 }
+
+.cardDisabled {
+  pointer-events: none;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
