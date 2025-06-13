@@ -1,0 +1,18 @@
+.revealContainer {
+  color: #374151; /* Tailwind text-gray-700 */
+  margin-bottom: 1rem;
+}
+
+.wordWrapper {
+  display: inline;
+}
+
+.word {
+  opacity: 0;
+  display: inline-block;
+  transition: opacity 0.5s ease-out;
+}
+
+.visible {
+  opacity: 1;
+}
