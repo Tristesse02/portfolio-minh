@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { ContentItem } from "@/types";
 import styles from "../../styles/SocialMusicPortfolio/DescriptionPanel.module.css";
 import WordReveal from "../animation/WordReveal";
