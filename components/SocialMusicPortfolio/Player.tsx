@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { ContentItem } from "@/types";
 import Image from "next/image";
+import { ContentItem } from "@/types";
+import { Button } from "@/components/ui/button";
+import { useEffect, useRef, useState } from "react";
 import { Heart, Pause, Play, Volume2 } from "lucide-react";
-import styles from "../../styles/SocialMusicPortfolio/Player.module.css";
+
 import Slider from "../../components/ui/Slider";
+import styles from "../../styles/SocialMusicPortfolio/Player.module.css";
 
 interface Props {
   content: ContentItem;
