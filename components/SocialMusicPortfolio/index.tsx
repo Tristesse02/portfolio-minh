@@ -31,6 +31,7 @@ export default function SocialMusicPortfolio() {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration] = useState(180);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const filteredContent = contentItems.filter(
     (item) => item.category === activeTab
@@ -89,9 +90,20 @@ export default function SocialMusicPortfolio() {
     fetchTestimonials();
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div className={styles.pageWrapper}>
-      <header className={styles.header}>
+      <header
+        className={`${styles.header} ${isScrolled ? styles.scrolled : ""}`}
+      >
         <div className={styles.headerInner}>
           <div className={styles.logo}>
             <div className={styles.logoBox}>
