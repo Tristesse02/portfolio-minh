@@ -1,5 +1,5 @@
 import Image from "next/image";
-// @ts-expect-error
+// @ts-expect-error ColorThief has no types, imported as CommonJS default
 import ColorThief from "colorthief";
 import { ContentItem } from "@/types";
 import { Button } from "@/components/ui/button";
