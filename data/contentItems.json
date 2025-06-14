@@ -2,6 +2,7 @@
   {
     "id": "about-me",
     "title": "About me",
+    "altTitle": "2002 - Anne Marie",
     "category": "about",
     "description": "Hey there — welcome to my space!\n I love building meaningful things that make life a little easier and more delightful. I'm passionate about fast-paced environments, creative problem-solving, and crafting experiences that not only work well, but look interesting too. :))",
     "audioUrl": "/audio/2002.mp3",
@@ -13,6 +14,7 @@
   {
     "id": "free-time",
     "title": "My Free Time",
+    "altTitle": "Let Her Go - Passenger",
     "category": "about",
     "description": "When I’m not coding, you’ll probably find me at the piano.\nThe song you’re hearing is one of my proudest covers — Let Her Go - played during my very first year of learning! 😁 Enjoy~\nOutside of music, I’ve hit a 2000 rating on Chess.com, I’m a huge Barça fan, and I dabble in a bit of PUBG for fun. 🎹♟⚽🎮",
     "audioUrl": "/audio/LetHerGo.mp3",
@@ -24,6 +26,7 @@
   {
     "id": "umass",
     "title": "My Time at UMass",
+    "altTitle": "Adventure - JJD",
     "category": "about",
     "description": "Four years at UMass have given me unforgettable memories, lifelong friendships, meaningful lessons — and some seriously good food.\nI’ve had the privilege to learn from world-class educators and grow alongside some truly brilliant minds.\nI’m proud to be a UMass student, and even prouder to be part of its alumni community. 💜🌲",
     "audioUrl": "/audio/Adventure.mp3",
@@ -35,6 +38,7 @@
   {
     "id": "beatcode",
     "title": "BeatCode",
+    "altTitle": "Blinding Lights - The Weeknd",
     "category": "projects",
     "description": "A dual-battle coding game inspired by LeetCode and Tetris, built in collaboration with my best friend, Bao Dang.\nI had the chance to work with FastAPI, PostgreSQL, Auth, PassLib, and explore the frontend using Svelte.\nThe project launch exceeded our expectations: 300+ accounts, 1,000+ unique visitors, and 4,800+ page views — all within the first 12 hours of deployment.",
     "audioUrl": "/audio/BlindingLight.mp3",
@@ -46,6 +50,7 @@
   {
     "id": "cloud-cue",
     "title": "Cloud Cue",
+    "altTitle": "Creep - Postmodern Jukebox",
     "category": "projects",
     "description": "A real-time word suggestion tool built to support non-native speakers during interviews, inspired by the struggles I saw many international students face.\nI got to work with AWS Transcribe, Facebook OPT-1.3b, S3, and visualized predictions through a live word cloud interface.\nThe tool transcribes speech on the fly and suggests likely next words based on context — helping users speak more confidently, one word at a time.",
     "audioUrl": "/audio/Creep.mp3",
@@ -57,6 +62,7 @@
   {
     "id": "resume-agent",
     "title": "Resume Agent",
+    "altTitle": "I Wish You Love - Laufey",
     "category": "projects",
     "description": "An agent that help CS students tailor their resume!\nThe pipeline? Simple!\nDescribe me what you have done for the work, as detailed as possible, and whoalah, a standard CS resume is created!",
     "audioUrl": "/audio/IWishYouLove.mp3",
@@ -68,6 +74,7 @@
   {
     "id": "ohess",
     "title": "OhEss (OS)",
+    "altTitle": "My way - Frank Sinatra",
     "category": "projects",
     "description": "An inspired window 10 interface that runs on Webpage interface 😲\nIt not just mimic the interface of the Window 10, but you can actually runs program there! Try out Linux and Kolibri 😉\nThe project is heavily inspired by JSLinux by Fabrice Bellard's",
     "audioUrl": "/audio/MyWay.mp3",
@@ -79,6 +86,7 @@
   {
     "id": "avocademy",
     "title": "Avocademy (YC 22)",
+    "altTitle": "The Power Of Love - Francesco Parrino",
     "category": "experience",
     "description": "A scrappy little startup with a big goal: make job hunting as effortless as possible.\nWe built a platform that crawls new job listings daily, lets users bookmark the ones they love, and auto-fills applications like magic.\nI teamed up with the crew using FastAPI, PostgreSQL, Playwright, and the OpenAI API to pull out the juicy details — all wrapped in a smooth CI/CD flow and shipped on Vercel. ",
     "audioUrl": "/audio/ThePowerOfLove.mp3",
@@ -90,6 +98,7 @@
   {
     "id": "fpt-software",
     "title": "FPT Software",
+    "altTitle": "Close To The Sun - TheFatRat",
     "category": "experience",
     "description": "My second-year summer was full of excitement working at FPT Software, where I helped build a full-cycle management webpage for the Japanese Pharmacists Association using NgRx and RxJS.\nWith support from an amazing boss and team, I tackled 20,000+ data bindings between frontend and backend — turning a once-daunting task into something smooth and scalable.\nAlong the way, I squashed bugs, streamlined workflows, and grew a ton as a developer.",
     "audioUrl": "/audio/CloseToTheSun.mp3",
@@ -101,6 +110,7 @@
   {
     "id": "viettelai",
     "title": "Viettel AI",
+    "altTitle": "Dreams - Tobu",
     "category": "experience",
     "description": "My third-year summer was all about NLP — working with Viettel AI to build out the pipeline for a Vietnamese chatbot model.",
     "audioUrl": "/audio/Dreams.mp3",

@@ -1,6 +1,7 @@
 export interface ContentItem {
   id: string;
   title: string;
+  altTitle: string;
   category: "about" | "projects" | "experience";
   description: string;
   audioUrl: string;

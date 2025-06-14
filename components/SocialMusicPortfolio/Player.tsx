@@ -118,7 +118,14 @@ export default function Player({
               </Button>
             </div>
             <div className={styles.trackInfo}>
-              <h3>{content.title}</h3>
+              <div className={styles.titleStack}>
+                <span className={styles.titleLayer}>{content.title}</span>
+                <span
+                  className={`${styles.titleLayer} ${styles.titleLayerSecond}`}
+                >
+                  {content.altTitle}
+                </span>
+              </div>
               <p>Now Playing</p>
             </div>
           </div>

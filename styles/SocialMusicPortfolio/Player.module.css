@@ -114,3 +114,42 @@
   display: flex;
   gap: 0.5rem;
 }
+
+.titleStack {
+  position: relative;
+  height: 1.5em; /* or whatever height fits your font */
+  overflow: hidden;
+}
+
+.titleLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  width: 100%;
+  text-align: left;
+  animation: titleFade 7s infinite;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.titleLayerSecond {
+  animation-delay: 3.5s;
+}
+
+@keyframes titleFade {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
