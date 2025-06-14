@@ -1,5 +1,5 @@
 import Image from "next/image";
-// @ts-ignore
+// @ts-expect-error
 import ColorThief from "colorthief";
 import { ContentItem } from "@/types";
 import { Button } from "@/components/ui/button";
@@ -101,9 +101,9 @@ export default function Player({
     b /= 255;
     const max = Math.max(r, g, b),
       min = Math.min(r, g, b);
-    let h: number = 0,
-      s: number,
-      l: number = (max + min) / 2;
+    let h: number = 0;
+    let s: number;
+    const l: number = (max + min) / 2;
 
     if (max === min) {
       h = s = 0; // achromatic
