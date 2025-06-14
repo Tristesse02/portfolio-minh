@@ -7,6 +7,9 @@
 
 .imageWrapper {
   position: relative;
+  width: 100%;
+  height: 20rem; /* or your exact height */
+  overflow: hidden;
 }
 
 .overlay {
@@ -151,5 +154,19 @@
   }
   100% {
     opacity: 0;
+  }
+}
+
+.fadeImage {
+  opacity: 0;
+  animation: fadeInImage 0.7s ease-in-out forwards;
+}
+
+@keyframes fadeInImage {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

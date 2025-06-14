@@ -50,11 +50,12 @@ export default function Player({
     <div className={styles.playerContainer}>
       <div className={styles.imageWrapper}>
         <Image
+          key={content.imageUrl}
           src={content.imageUrl}
           alt={content.title}
           width={600}
           height={400}
-          className={`w-full h-80 object-cover object-[center_${content.percentage}%]`}
+          className={`w-full h-80 object-cover object-[center_${content.percentage}%] ${styles.fadeImage}`}
         />
         <div className={styles.overlay}>
           <div className={styles.controls}>
