@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ContentItem } from "@/types";
 import { Button } from "@/components/ui/button";
+import { FastAverageColor } from "fast-average-color";
 import { useEffect, useRef, useState } from "react";
 import { Heart, Pause, Play, Volume2 } from "lucide-react";
 
@@ -24,6 +25,17 @@ export default function Player({
 }: Props) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [volume, setVolume] = useState([15]);
+  const [bgColor, setBgColor] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fac = new FastAverageColor();
+    fac
+      .getColorAsync(content.imageUrl)
+      .then((color) => {
+        setBgColor(color.hex);
+      })
+      .catch(console.error);
+  }, [content.imageUrl]);
 
   useEffect(() => {
     if (isPlaying) {
@@ -49,6 +61,14 @@ export default function Player({
 
   return (
     <div className={styles.playerContainer}>
+      <div
+        className={styles.dynamicBackdrop}
+        style={{
+          background: bgColor
+            ? `radial-gradient(ellipse at center, ${bgColor} 0%, transparent 70%)`
+            : undefined,
+        }}
+      />
       <div className={styles.imageWrapper}>
         <Image
           key={content.imageUrl}
