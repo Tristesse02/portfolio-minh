@@ -1,7 +1,9 @@
 import Image from "next/image";
+// @ts-ignore
+import ColorThief from "colorthief";
 import { ContentItem } from "@/types";
 import { Button } from "@/components/ui/button";
-import { FastAverageColor } from "fast-average-color";
+// import { FastAverageColor } from "fast-average-color";
 import { useEffect, useRef, useState } from "react";
 import { Heart, Pause, Play, Volume2 } from "lucide-react";
 
@@ -25,16 +27,46 @@ export default function Player({
 }: Props) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [volume, setVolume] = useState([15]);
-  const [bgColor, setBgColor] = useState<string | null>(null);
+  // const [bgColor, setBgColor] = useState<string | null>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
+  const [dominantColor, setDominantColor] = useState<string | null>(null);
 
   useEffect(() => {
-    const fac = new FastAverageColor();
-    fac
-      .getColorAsync(content.imageUrl)
-      .then((color) => {
-        setBgColor(color.hex);
-      })
-      .catch(console.error);
+    const img = imgRef.current;
+    if (!img) return;
+
+    const colorThief = new ColorThief();
+
+    const isTooDarkOrGray = ([r, g, b]: number[]) => {
+      const brightness = (r + g + b) / 3;
+      const colorVariance = Math.max(r, g, b) - Math.min(r, g, b);
+      return brightness < 50 || colorVariance < 15;
+    };
+
+    const extractColor = () => {
+      try {
+        const palette = colorThief.getPalette(img, 6); // top 6 colors
+        const filtered = palette.filter(
+          (color: [number, number, number]) => !isTooDarkOrGray(color)
+        );
+        const [r, g, b] = filtered.length ? filtered[0] : palette[0];
+
+        const [h, s, l] = rgbToHsl(r, g, b);
+        const intenseS = Math.min(s + 30, 100); // boost saturation
+        const adjustedL = Math.max(Math.min(l - 5, 70), 30); // tweak lightness
+
+        const vividColor = hslToCss(h, intenseS, adjustedL);
+        setDominantColor(vividColor);
+      } catch (err) {
+        console.error("Failed to extract color:", err);
+      }
+    };
+
+    if (img.complete) {
+      extractColor();
+    } else {
+      img.addEventListener("load", extractColor, { once: true });
+    }
   }, [content.imageUrl]);
 
   useEffect(() => {
@@ -59,13 +91,53 @@ export default function Player({
     audio.volume = value[0] / 200;
   };
 
+  const rgbToHsl = (
+    r: number,
+    g: number,
+    b: number
+  ): [number, number, number] => {
+    r /= 255;
+    g /= 255;
+    b /= 255;
+    const max = Math.max(r, g, b),
+      min = Math.min(r, g, b);
+    let h: number = 0,
+      s: number,
+      l: number = (max + min) / 2;
+
+    if (max === min) {
+      h = s = 0; // achromatic
+    } else {
+      const d = max - min;
+      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+      switch (max) {
+        case r:
+          h = (g - b) / d + (g < b ? 6 : 0);
+          break;
+        case g:
+          h = (b - r) / d + 2;
+          break;
+        case b:
+          h = (r - g) / d + 4;
+          break;
+      }
+      h *= 60;
+    }
+
+    return [h, s * 100, l * 100];
+  };
+
+  const hslToCss = (h: number, s: number, l: number): string => {
+    return `hsl(${Math.round(h)}, ${Math.round(s)}%, ${Math.round(l)}%)`;
+  };
+
   return (
     <div className={styles.playerContainer}>
       <div
         className={styles.dynamicBackdrop}
         style={{
-          background: bgColor
-            ? `radial-gradient(ellipse at center, ${bgColor} 0%, transparent 70%)`
+          background: dominantColor
+            ? `radial-gradient(ellipse at center, ${dominantColor} 0%, transparent 70%)`
             : undefined,
         }}
       />
@@ -77,6 +149,12 @@ export default function Player({
           width={600}
           height={400}
           className={`w-full h-80 object-cover object-[center_${content.percentage}%] ${styles.fadeImage}`}
+        />
+        <img
+          src={content.imageUrl}
+          ref={imgRef}
+          crossOrigin="anonymous"
+          style={{ display: "none" }}
         />
         <div className={styles.overlay}>
           <div className={styles.controls}>
