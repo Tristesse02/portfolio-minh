@@ -1,41 +1,56 @@
-import React, { useEffect, useState } from "react";
-import styles from "../../styles/animation/WordReveal.module.css"; // We'll create this next
+import React, { useEffect, useRef, useState } from "react";
+import styles from "../../styles/animation/WordReveal.module.css";
 
 interface WordRevealProps {
   text: string;
-  delayPerWord?: number; // Optional: delay between words
+  delayPerWord?: number;
   setIsAnimating: (value: boolean) => void;
+  contentId: string;
 }
 
 export default function WordReveal({
   text,
   delayPerWord = 100,
   setIsAnimating,
+  contentId,
 }: WordRevealProps) {
   const wordsArray = text.split(" ");
   const [visible, setVisible] = useState<boolean[]>(
     Array(wordsArray.length).fill(false)
   );
 
+  const timeoutsRef = useRef<NodeJS.Timeout[]>([]);
+
   useEffect(() => {
+    // Clear previous timeouts
+    timeoutsRef.current.forEach(clearTimeout);
+    timeoutsRef.current = [];
+
     setVisible(Array(wordsArray.length).fill(false));
-    setIsAnimating(true);
+    setIsAnimating(false); // TODO: remove setIsAnimating!
 
     wordsArray.forEach((_, i) => {
-      setTimeout(() => {
+      const timeoutId = setTimeout(() => {
         setVisible((prev) => {
           const updated = [...prev];
           updated[i] = true;
-
-          if (i === wordsArray.length - 1) {
-            setTimeout(() => setIsAnimating(false), 200); // slight buffer
-          }
-
           return updated;
         });
+
+        if (i === wordsArray.length - 1) {
+          setTimeout(() => setIsAnimating(false), 200);
+        }
       }, i * delayPerWord);
+
+      timeoutsRef.current.push(timeoutId);
     });
-  }, [text]);
+
+    // Cleanup on unmount or when contentId changes
+    return () => {
+      timeoutsRef.current.forEach(clearTimeout);
+      timeoutsRef.current = [];
+    };
+  }, [text, contentId]);
 
   return (
     <div className={styles.revealContainer}>
@@ -43,23 +58,23 @@ export default function WordReveal({
         const endsWithNewline = word.endsWith("\n");
         const cleanWord = word.replace(/\n/g, "");
 
+        const isVisible = i === 0 || (visible[i] && visible[i - 1]);
+
+        const spanElement = (
+          <span className={`${styles.word} ${isVisible ? styles.visible : ""}`}>
+            {cleanWord}&nbsp;
+          </span>
+        );
+
         return endsWithNewline ? (
           <div key={i} style={{ display: "inline" }}>
-            <span
-              className={`${styles.word} ${visible[i] ? styles.visible : ""}`}
-            >
-              {cleanWord}&nbsp;
-            </span>
+            {spanElement}
             <br />
             <br />
           </div>
         ) : (
           <span key={i} className={styles.wordWrapper}>
-            <span
-              className={`${styles.word} ${visible[i] ? styles.visible : ""}`}
-            >
-              {cleanWord}&nbsp;
-            </span>
+            {spanElement}
           </span>
         );
       })}

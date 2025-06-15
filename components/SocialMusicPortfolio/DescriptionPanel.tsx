@@ -16,6 +16,7 @@ export default function DescriptionPanel({ content, setIsAnimating }: Props) {
         <WordReveal
           text={content.description}
           setIsAnimating={setIsAnimating}
+          contentId={content.id}
         />
       </div>
       <div className={styles.statsBox}>
