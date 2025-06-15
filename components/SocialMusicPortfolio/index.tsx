@@ -30,7 +30,6 @@ export default function SocialMusicPortfolio() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration] = useState(180);
-  const [isAnimating, setIsAnimating] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   const filteredContent = contentItems.filter(
@@ -40,7 +39,6 @@ export default function SocialMusicPortfolio() {
   const handlePlayPause = () => setIsPlaying(!isPlaying);
 
   const handleSelectContent = (item: ContentItem) => {
-    if (isAnimating) return;
     setCurrentContent(item);
     setIsPlaying(true);
     setCurrentTime(0);
@@ -135,15 +133,11 @@ export default function SocialMusicPortfolio() {
             items={filteredContent}
             currentId={currentContent.id}
             onSelect={handleSelectContent}
-            isDisabled={isAnimating}
           />
         </div>
 
         <div className={styles.rightCol}>
-          <DescriptionPanel
-            content={currentContent}
-            setIsAnimating={setIsAnimating}
-          />
+          <DescriptionPanel content={currentContent} />
           <div className={styles.testimonialsCard}>
             <div className={styles.headerRow}>
               <h3 className="font-bold">Fans</h3>

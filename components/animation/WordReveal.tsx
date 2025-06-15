@@ -4,14 +4,12 @@ import styles from "../../styles/animation/WordReveal.module.css";
 interface WordRevealProps {
   text: string;
   delayPerWord?: number;
-  setIsAnimating: (value: boolean) => void;
   contentId: string;
 }
 
 export default function WordReveal({
   text,
   delayPerWord = 100,
-  setIsAnimating,
   contentId,
 }: WordRevealProps) {
   const wordsArray = text.split(" ");
@@ -27,7 +25,6 @@ export default function WordReveal({
     timeoutsRef.current = [];
 
     setVisible(Array(wordsArray.length).fill(false));
-    setIsAnimating(false); // TODO: remove setIsAnimating!
 
     wordsArray.forEach((_, i) => {
       const timeoutId = setTimeout(() => {
@@ -36,10 +33,6 @@ export default function WordReveal({
           updated[i] = true;
           return updated;
         });
-
-        if (i === wordsArray.length - 1) {
-          setTimeout(() => setIsAnimating(false), 200);
-        }
       }, i * delayPerWord);
 
       timeoutsRef.current.push(timeoutId);

@@ -5,19 +5,14 @@ import WordReveal from "../animation/WordReveal";
 
 interface Props {
   content: ContentItem;
-  setIsAnimating: (value: boolean) => void;
 }
 
-export default function DescriptionPanel({ content, setIsAnimating }: Props) {
+export default function DescriptionPanel({ content }: Props) {
   return (
     <div className={styles.panelWrapper}>
       <div className={styles.descriptionBox}>
         <h3 className={styles.descriptionHeading}>Lyrics</h3>
-        <WordReveal
-          text={content.description}
-          setIsAnimating={setIsAnimating}
-          contentId={content.id}
-        />
+        <WordReveal text={content.description} contentId={content.id} />
       </div>
       <div className={styles.statsBox}>
         <div className={styles.statsGrid}>
