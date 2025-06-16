@@ -226,7 +226,22 @@ export default function Player({
                   {content.altTitle}
                 </span>
               </div>
-              <p>Now Playing</p>
+              <div className={styles.playingNotiStack}>
+                <span
+                  className={`${styles.commonPlayingText} ${
+                    isPlaying ? styles.nowPlaying : styles.notNowPlaying
+                  }`}
+                >
+                  Now Playing
+                </span>
+                <span
+                  className={`${styles.commonPlayingText} ${
+                    !isPlaying ? styles.onPause : styles.notOnPause
+                  }`}
+                >
+                  On Pause
+                </span>
+              </div>
             </div>
           </div>
         </div>

@@ -186,3 +186,37 @@
   pointer-events: none;
   background-size: 150% 150%; /* Force spread to top/sides */
 }
+
+.playingNotiStack {
+  position: relative;
+  line-height: 1.2rem;
+}
+
+.commonPlayingText {
+  font-size: 0.875rem;
+  color: #fffc;
+}
+
+.nowPlaying {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
+}
+
+.notNowPlaying {
+  opacity: 0;
+}
+
+.onPause {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  transition: opacity 0.7s ease-in-out;
+}
+
+.notOnPause {
+  opacity: 0;
+}
