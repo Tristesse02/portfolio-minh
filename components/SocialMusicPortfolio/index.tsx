@@ -4,7 +4,7 @@
 import { ContentItem } from "@/types";
 import { UserPlus } from "lucide-react";
 import { useState, useEffect } from "react";
-import rawContentItems from "@/data/contentItems.json" assert { type: "json" };
+
 import SidebarProfile from "@/components/SocialMusicPortfolio/SidebarProfile";
 import TabNav from "@/components/SocialMusicPortfolio/TabNav";
 import Player from "@/components/SocialMusicPortfolio/Player";
@@ -14,6 +14,9 @@ import Testimonials from "@/components/SocialMusicPortfolio/Testimonials";
 import styles from "../../styles/SocialMusicPortfolio/index.module.css";
 import TestimonialModal from "../modal/TestimonialModal";
 import FanInviteModal from "../modal/FanInviteModal";
+
+import rawContentItems from "@/data/contentItems.json" assert { type: "json" };
+import fallbackTestimonial from "@/data/testimonials.json" assert { type: "json" };
 
 export default function SocialMusicPortfolio() {
   const contentItems = rawContentItems as ContentItem[];
@@ -82,7 +85,11 @@ export default function SocialMusicPortfolio() {
   useEffect(() => {
     const fetchTestimonials = async () => {
       const res = await fetch("/api/get-testimonials");
-      const data = await res.json();
+      let data = await res.json();
+      if (data?.error) {
+        console.log("ditconmmeeeeeee", data);
+        data = fallbackTestimonial;
+      }
       setTestimonials(data);
     };
     fetchTestimonials();
