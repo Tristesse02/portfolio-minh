@@ -190,6 +190,7 @@
 .playingNotiStack {
   position: relative;
   line-height: 1.2rem;
+  width: 10rem;
 }
 
 .commonPlayingText {
