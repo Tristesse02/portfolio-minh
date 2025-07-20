@@ -47,6 +47,7 @@
   border-radius: 9999px;
   background-color: white;
   color: black;
+  cursor: pointer;
 }
 
 .progressBar {

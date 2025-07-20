@@ -17,6 +17,7 @@ import FanInviteModal from "../modal/FanInviteModal";
 
 import rawContentItems from "@/data/contentItems.json" assert { type: "json" };
 import fallbackTestimonial from "@/data/testimonials.json" assert { type: "json" };
+import FloatingMusicPlayer from "./FloatingMusicPlayer";
 
 export default function SocialMusicPortfolio() {
   const contentItems = rawContentItems as ContentItem[];
@@ -180,6 +181,13 @@ export default function SocialMusicPortfolio() {
       <TestimonialModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
+      />
+      <FloatingMusicPlayer
+        content={currentContent}
+        isPlaying={isPlaying}
+        currentTime={currentTime}
+        duration={duration}
+        onPlayPause={handlePlayPause}
       />
     </div>
   );
