@@ -141,7 +141,7 @@ export default function Player({
             : undefined,
         }}
       />
-      <div className={styles.imageWrapper}>
+      {/* <div className={styles.imageWrapper}>
         <Image
           key={content.imageUrl}
           src={content.imageUrl}
@@ -246,6 +246,38 @@ export default function Player({
           </div>
         </div>
         <audio ref={audioRef} src={content.audioUrl} preload="metadata" />
+      </div> */}
+      <div className={styles.flexRowLayout}>
+        <div className={styles.leftPanel}>
+          <div className={styles.imageWrapper}>
+            <Image
+              key={content.imageUrl}
+              src={content.imageUrl}
+              alt={content.title}
+              width={600}
+              height={400}
+              className={styles.fadeImage}
+            />
+            <img
+              src={content.imageUrl}
+              ref={imgRef}
+              crossOrigin="anonymous"
+              style={{ display: "none" }}
+            />
+            <div className={styles.overlay}>
+              <div className={styles.controls}>
+                {/* existing controlsTop, bottomRightControls, etc */}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.rightPanel}>
+          <div className={styles.lyricBlock}>
+            <div className={styles.lyricTitle}>{content.title}</div>
+            <div>{content.description}</div>
+          </div>
+        </div>
       </div>
     </div>
   );
