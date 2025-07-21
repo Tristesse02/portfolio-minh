@@ -122,9 +122,9 @@ export default function SocialMusicPortfolio() {
       </header>
 
       <div className={styles.pageContent}>
-        <div className={styles.leftCol}>
+        {/* <div className={styles.leftCol}>
           <SidebarProfile />
-        </div>
+        </div> */}
 
         <div className={styles.centerCol}>
           <Player

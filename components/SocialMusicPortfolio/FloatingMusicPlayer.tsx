@@ -30,7 +30,6 @@ const FloatingMusicPlayer = ({
           <div className="flex items-center gap-3">
             <div>
               <h4 className="font-semibold text-sm">{content.title}</h4>
-              <p className="text-xs text-gray-600">Now Playing</p>
             </div>
           </div>
 
