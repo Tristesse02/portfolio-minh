@@ -30,6 +30,38 @@ export default function Player({
   // const [bgColor, setBgColor] = useState<string | null>(null);
   const imgRef = useRef<HTMLImageElement>(null);
   const [dominantColor, setDominantColor] = useState<string | null>(null);
+  const backdropRef = useRef<HTMLDivElement>(null); // 👉 this is your backdrop
+  const [currentImage, setCurrentImage] = useState(content.imageUrl);
+
+  // Force browser to re-render the backdrop correctly when the image changes
+  // useEffect(() => {
+  //   const backdrop = backdropRef.current;
+  //   if (!backdrop) return;
+
+  //   // Force a repaint to fix the "blur not rendering" issue
+  //   requestAnimationFrame(() => {
+  //     backdrop.style.willChange = "transform, opacity";
+  //     backdrop.style.transform = "translateZ(0)"; // Or `+= ''` if needed
+  //     backdrop.style.opacity = "0.6"; // optional: force update
+  //   });
+  // }, [currentImage]);
+
+  const forceRepaintScroll = () => {
+    if (typeof window !== "undefined") {
+      requestAnimationFrame(() => {
+        const x = window.scrollX;
+        const y = window.scrollY;
+        window.scrollTo(x, y + 100);
+        window.scrollTo(x, y);
+      });
+    }
+  };
+
+  const handleBackdropLoad = () => {
+    setTimeout(() => {
+      forceRepaintScroll();
+    }, 400); // wait for 50 milliseconds
+  };
 
   useEffect(() => {
     const img = imgRef.current;
@@ -133,123 +165,19 @@ export default function Player({
 
   return (
     <div className={styles.playerContainer}>
-      <div
-        className={styles.dynamicBackdrop}
-        style={{
-          background: dominantColor
-            ? `radial-gradient(ellipse at center, ${dominantColor} 0%, transparent 70%)`
-            : undefined,
-        }}
-      />
-      {/* <div className={styles.imageWrapper}>
-        <Image
-          key={content.imageUrl}
-          src={content.imageUrl}
-          alt={content.title}
-          width={600}
-          height={400}
-          className={`w-full h-80 object-cover object-[center_${content.percentage}%] ${styles.fadeImage}`}
-        />
-        <img
-          src={content.imageUrl}
-          ref={imgRef}
-          crossOrigin="anonymous"
-          style={{ display: "none" }}
-        />
-        <div className={styles.overlay}>
-          <div className={styles.controls}>
-            <div className={styles.controlsTop}>
-              <Button
-                onClick={onPlayPause}
-                size="sm"
-                className={styles.playButton}
-              >
-                {isPlaying ? (
-                  <Pause className="w-4 h-4" />
-                ) : (
-                  <Play className="w-4 h-4 ml-0.5" />
-                )}
-              </Button>
-              <div className={styles.progressBar}>
-                <div
-                  className={styles.progress}
-                  style={{ width: `${(currentTime / duration) * 100}%` }}
-                />
-              </div>
-              <span className={styles.timestamp}>
-                {formatTime(currentTime)} / {formatTime(duration)}
-              </span>
-              <div className="flex items-center gap-2">
-                <Volume2 className="w-4 h-4 text-white" />
-                <Slider
-                  value={volume}
-                  onValueChange={handleVolumeChange}
-                  max={100}
-                  step={1}
-                  className="w-20"
-                />
-              </div>
-            </div>
-            <div className={styles.bottomRightControls}>
-              <Button size="sm" variant="ghost" className={styles.iconButton}>
-                <Heart className="w-4 h-4" />
-              </Button>
-              <Button
-                size="sm"
-                variant="ghost"
-                className={styles.infoButton}
-                onClick={() =>
-                  (window.location.href = `/article/${content.id}/?playing=${isPlaying}&time=${currentTime}`)
-                }
-              >
-                <svg
-                  className="icon"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              </Button>
-            </div>
-            <div className={styles.trackInfo}>
-              <div className={styles.titleStack}>
-                <span className={styles.titleLayer}>{content.title}</span>
-                <span
-                  className={`${styles.titleLayer} ${styles.titleLayerSecond}`}
-                >
-                  {content.altTitle}
-                </span>
-              </div>
-              <div className={styles.playingNotiStack}>
-                <span
-                  className={`${styles.commonPlayingText} ${
-                    isPlaying ? styles.nowPlaying : styles.notNowPlaying
-                  }`}
-                >
-                  Now Playing
-                </span>
-                <span
-                  className={`${styles.commonPlayingText} ${
-                    !isPlaying ? styles.onPause : styles.notOnPause
-                  }`}
-                >
-                  On Pause
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <audio ref={audioRef} src={content.audioUrl} preload="metadata" />
-      </div> */}
       <div className={styles.flexRowLayout}>
         <div className={styles.leftPanel}>
           <div className={styles.imageWrapper}>
+            <div className={styles.dynamicBackdrop}>
+              <Image
+                src={content.imageUrl}
+                alt="Backdrop"
+                fill
+                priority
+                onLoad={handleBackdropLoad}
+                className={styles.backdropImage}
+              />
+            </div>
             <Image
               key={content.imageUrl}
               src={content.imageUrl}
@@ -258,16 +186,8 @@ export default function Player({
               height={400}
               className={styles.fadeImage}
             />
-            <img
-              src={content.imageUrl}
-              ref={imgRef}
-              crossOrigin="anonymous"
-              style={{ display: "none" }}
-            />
             <div className={styles.overlay}>
-              <div className={styles.controls}>
-                {/* existing controlsTop, bottomRightControls, etc */}
-              </div>
+              <div className={styles.controls}></div>
             </div>
           </div>
         </div>
@@ -275,7 +195,7 @@ export default function Player({
         <div className={styles.rightPanel}>
           <div className={styles.lyricBlock}>
             <div className={styles.lyricTitle}>{content.title}</div>
-            <div>{content.description}</div>
+            <div className={styles.lyricDescription}>{content.description}</div>
           </div>
         </div>
       </div>

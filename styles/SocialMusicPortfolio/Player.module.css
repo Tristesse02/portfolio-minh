@@ -1,9 +1,9 @@
 .playerContainer {
   z-index: 1;
   margin-bottom: 1.5rem;
-  overflow: hidden;
+  overflow: visible !important;
   border-radius: 0.375rem;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); */
   min-height: 25rem;
 }
 
@@ -11,7 +11,8 @@
   position: relative;
   width: 100%;
   aspect-ratio: 3 / 2;
-  overflow: hidden;
+  overflow: visible;
+  z-index: 1;
 }
 
 .overlay {
@@ -19,6 +20,7 @@
   bottom: 1rem;
   left: 1rem;
   right: 1rem;
+  z-index: 2;
 }
 
 .controls {
@@ -29,6 +31,7 @@
   opacity: 0.3;
   transition: opacity 0.3s ease-in-out;
   position: relative; /* Needed for bottomRightControls positioning */
+  z-index: 2;
 }
 
 .controls:hover {
@@ -168,6 +171,7 @@
   opacity: 0;
   border-radius: 0.375rem;
   animation: fadeInImage 0.7s ease-in-out forwards;
+  z-index: 1;
 }
 @keyframes fadeInImage {
   from {
@@ -178,19 +182,37 @@
   }
 }
 
+@keyframes repaintFix {
+  0% {
+    opacity: 0.99;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .dynamicBackdrop {
   position: absolute;
-  top: -15%;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  height: 400px;
+  transform: translate(-50%, -50%);
   z-index: 0;
-  width: 100%;
-  height: 90%;
-  filter: blur(60px);
-  opacity: 0.5;
-  background-position: center center;
-  transition: background 0.5s ease-in-out;
   pointer-events: none;
-  background-size: 150% 150%; /* Force spread to top/sides */
+  display: flex;
+  overflow: visible;
+  will-change: transform, opacity;
+  animation: repaintFix 0.01s;
+}
+
+.backdropImage {
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.4);
+  filter: blur(60px) brightness(1.1) contrast(1.4) saturate(1.5);
+  opacity: 0.5;
+  transition: transform 0.3s ease;
 }
 
 .playingNotiStack {
@@ -236,12 +258,14 @@
   /* padding: 1rem; */
   box-sizing: border-box;
   align-items: stretch;
+  overflow: visible !important;
 }
 
 .leftPanel {
   flex: 0 0 60%;
   min-width: 280px;
   position: relative;
+  overflow: visible !important;
 }
 
 .rightPanel {
@@ -263,7 +287,6 @@
   max-width: 100%; /* prevents it from stretching oddly */
 }
 
-
 .lyricBlock {
   white-space: pre-wrap;
   font-size: 0.95rem;
@@ -276,4 +299,8 @@
   font-size: 1.5rem;
   margin-bottom: 0.75rem;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+.lyricDescription {
+  color: black;
 }
