@@ -28,7 +28,7 @@
   z-index: 2;
   padding: 1rem;
   opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
   overflow: hidden;
   pointer-events: none; /* prevents hover/click while hidden */
 }
@@ -53,10 +53,6 @@
   position: relative;
   z-index: 1; /* Ensures child content is above fade */
 }
-/* 
-.controls:hover {
-  opacity: 1;
-} */
 
 .controlsTop {
   display: flex;
@@ -351,4 +347,26 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.volumeWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.volumeSlider {
+  width: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  transform: translateX(-10px); /* optional, makes it “slide in” */
+  padding-block: 0.4rem;
+}
+
+.volumeWrapper:hover .volumeSlider {
+  width: 5rem; /* or use min-width if needed */
+  opacity: 1;
+  transform: translateX(0);
 }

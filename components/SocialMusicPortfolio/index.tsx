@@ -35,6 +35,7 @@ export default function SocialMusicPortfolio() {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration] = useState(180);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [dominantColor, setDominantColor] = useState<string | null>(null);
 
   const filteredContent = contentItems.filter(
     (item) => item.category === activeTab
@@ -133,6 +134,7 @@ export default function SocialMusicPortfolio() {
             currentTime={currentTime}
             duration={duration}
             onPlayPause={handlePlayPause}
+            setDominantColor={setDominantColor}
           />
           <h2 className={styles.contentHeading}>
             {activeTab === "about" ? "Get to know me" : activeTab}
@@ -188,6 +190,7 @@ export default function SocialMusicPortfolio() {
         currentTime={currentTime}
         duration={duration}
         onPlayPause={handlePlayPause}
+        dominantColor={dominantColor}
       />
     </div>
   );

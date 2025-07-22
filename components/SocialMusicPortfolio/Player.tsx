@@ -16,6 +16,7 @@ interface Props {
   currentTime: number;
   duration: number;
   onPlayPause: () => void;
+  setDominantColor: (color: string | null) => void;
 }
 
 export default function Player({
@@ -24,27 +25,11 @@ export default function Player({
   currentTime,
   duration,
   onPlayPause,
+  setDominantColor,
 }: Props) {
   const audioRef = useRef<HTMLAudioElement>(null);
-  const [volume, setVolume] = useState([15]);
-  // const [bgColor, setBgColor] = useState<string | null>(null);
+  const [volume, setVolume] = useState([23]);
   const imgRef = useRef<HTMLImageElement>(null);
-  const [dominantColor, setDominantColor] = useState<string | null>(null);
-  const backdropRef = useRef<HTMLDivElement>(null); // 👉 this is your backdrop
-  const [currentImage, setCurrentImage] = useState(content.imageUrl);
-
-  // Force browser to re-render the backdrop correctly when the image changes
-  // useEffect(() => {
-  //   const backdrop = backdropRef.current;
-  //   if (!backdrop) return;
-
-  //   // Force a repaint to fix the "blur not rendering" issue
-  //   requestAnimationFrame(() => {
-  //     backdrop.style.willChange = "transform, opacity";
-  //     backdrop.style.transform = "translateZ(0)"; // Or `+= ''` if needed
-  //     backdrop.style.opacity = "0.6"; // optional: force update
-  //   });
-  // }, [currentImage]);
 
   const forceRepaintScroll = () => {
     if (typeof window !== "undefined") {
@@ -62,6 +47,35 @@ export default function Player({
       forceRepaintScroll();
     }, 400); // wait for 50 milliseconds
   };
+
+  useEffect(() => {
+    if (isPlaying) {
+      audioRef.current?.play();
+    } else {
+      audioRef.current?.pause();
+    }
+  }, [isPlaying, content]);
+
+  const formatTime = (time: number) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${minutes}:${seconds.toString().padStart(2, "0")}`;
+  };
+
+  const handleVolumeChange = (value: number[]) => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    setVolume(value);
+    audio.volume = value[0] / 200;
+  };
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (audio) {
+      audio.volume = volume[0] / 200;
+    }
+  }, []);
 
   useEffect(() => {
     const img = imgRef.current;
@@ -100,28 +114,6 @@ export default function Player({
       img.addEventListener("load", extractColor, { once: true });
     }
   }, [content.imageUrl]);
-
-  useEffect(() => {
-    if (isPlaying) {
-      audioRef.current?.play();
-    } else {
-      audioRef.current?.pause();
-    }
-  }, [isPlaying, content]);
-
-  const formatTime = (time: number) => {
-    const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time % 60);
-    return `${minutes}:${seconds.toString().padStart(2, "0")}`;
-  };
-
-  const handleVolumeChange = (value: number[]) => {
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    setVolume(value);
-    audio.volume = value[0] / 200;
-  };
 
   const rgbToHsl = (
     r: number,
@@ -185,6 +177,7 @@ export default function Player({
               width={600}
               height={400}
               className={styles.fadeImage}
+              ref={imgRef}
             />
             <div className={styles.overlay}>
               <div className={styles.controls}>
@@ -222,7 +215,7 @@ export default function Player({
                   </div> */}
                   </div>
                   <div className={styles.bottomRightControls}>
-                    <Button
+                    {/* <Button
                       size="sm"
                       variant="ghost"
                       className={styles.iconButton}
@@ -250,7 +243,22 @@ export default function Player({
                           d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                         />
                       </svg>
-                    </Button>
+                    </Button> */}
+                    <div className={styles.volumeWrapper}>
+                      <Volume2 className="w-4 h-4 text-white" />
+                      <div className={styles.volumeSlider}>
+                        <Slider
+                          value={volume}
+                          onValueChange={handleVolumeChange}
+                          max={100}
+                          step={1}
+                          className="w-20"
+                        />
+                      </div>
+                    </div>
+                    <span className={styles.timestamp}>
+                      {formatTime(currentTime)} / {formatTime(duration)}
+                    </span>
                   </div>
                   <div className={styles.trackInfo}>
                     <div className={styles.titleRow}>
@@ -295,16 +303,6 @@ export default function Player({
                           </span>
                         </div>
                       </div>
-                      {/* <div className="flex items-center gap-2">
-                        <Volume2 className="w-4 h-4 text-white" />
-                        <Slider
-                          value={volume}
-                          onValueChange={handleVolumeChange}
-                          max={100}
-                          step={1}
-                          className="w-20"
-                        />
-                      </div> */}
                     </div>
                   </div>
                 </div>
@@ -319,6 +317,7 @@ export default function Player({
             <div className={styles.lyricDescription}>{content.description}</div>
           </div>
         </div>
+        <audio ref={audioRef} src={content.audioUrl} preload="metadata" />
       </div>
     </div>
   );

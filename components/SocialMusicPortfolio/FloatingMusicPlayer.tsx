@@ -8,6 +8,7 @@ interface Props {
   currentTime: number;
   duration: number;
   onPlayPause: () => void;
+  dominantColor: string | null;
 }
 
 const FloatingMusicPlayer = ({
@@ -16,6 +17,7 @@ const FloatingMusicPlayer = ({
   currentTime,
   duration,
   onPlayPause,
+  dominantColor,
 }: Props) => {
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);
@@ -49,8 +51,11 @@ const FloatingMusicPlayer = ({
             <div className="flex-1">
               <div className="w-full bg-gray-200 rounded-full h-1">
                 <div
-                  className="bg-purple-600 h-1 rounded-full transition-all duration-1000"
-                  style={{ width: `${(currentTime / duration) * 100}%` }}
+                  className="h-1 rounded-full transition-all duration-1000"
+                  style={{
+                    width: `${(currentTime / duration) * 100}%`,
+                    backgroundColor: dominantColor ?? "#a855f7",
+                  }}
                 />
               </div>
             </div>
