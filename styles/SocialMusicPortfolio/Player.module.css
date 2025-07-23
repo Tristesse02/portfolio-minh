@@ -235,34 +235,6 @@
   object-position: center;
   transform: scale(1.4);
   filter: blur(60px) brightness(1.1) contrast(1.4) saturate(1.5);
-  opacity: 0.5;
-  transition: transform 0.3s ease;
-}
-
-.fadeOut {
-  animation: fadeOutBackdrop 6s forwards;
-}
-
-.fadein {
-  animation: fadeInBackdrop 6s forwards;
-}
-
-@keyframes fadeOutBackdrop {
-  from {
-    opacity: 0.5;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes fadeInBackdrop {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 0.5;
-  }
 }
 
 .playingNotiStack {

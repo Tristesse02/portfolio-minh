@@ -10,6 +10,7 @@ import { Heart, Pause, Play, Volume2 } from "lucide-react";
 import Slider from "../../components/ui/Slider";
 import styles from "../../styles/SocialMusicPortfolio/Player.module.css";
 
+const MAX_BACKDROP_OPACITY = 0.55;
 interface Props {
   content: ContentItem;
   isPlaying: boolean;
@@ -32,7 +33,8 @@ export default function Player({
   const imgRef = useRef<HTMLImageElement>(null);
   const [backdropUrl, setBackdropUrl] = useState(content.imageUrl);
   const [nextBackdropUrl, setNextBackdropUrl] = useState<string | null>(null);
-  const [fadeOut, setFadeOut] = useState(false);
+  const [backdropOpacity, setBackdropOpacity] = useState(MAX_BACKDROP_OPACITY);
+  const [nextOpacity, setNextOpacity] = useState(0);
 
   const forceRepaintScroll = () => {
     if (typeof window !== "undefined") {
@@ -79,6 +81,37 @@ export default function Player({
       audio.volume = volume[0] / 200;
     }
   }, []);
+
+  useEffect(() => {
+    if (content.imageUrl !== backdropUrl) {
+      let frame: number;
+      let opacityProgress = 0;
+      const maxOpacity = MAX_BACKDROP_OPACITY;
+
+      setNextBackdropUrl(content.imageUrl);
+      setNextOpacity(0); // Reset fade-in
+      setBackdropOpacity(maxOpacity); // Reset fade-out
+
+      const step = () => {
+        opacityProgress += 0.005; // adjust speed here
+
+        setNextOpacity(Math.min(opacityProgress * maxOpacity, maxOpacity));
+        setBackdropOpacity(Math.max((1 - opacityProgress) * maxOpacity, 0));
+
+        if (opacityProgress < 1) {
+          frame = requestAnimationFrame(step);
+        } else {
+          setBackdropUrl(content.imageUrl);
+          setNextBackdropUrl(null);
+          setBackdropOpacity(maxOpacity); // reset base
+          setNextOpacity(0);
+        }
+      };
+
+      frame = requestAnimationFrame(step);
+      return () => cancelAnimationFrame(frame);
+    }
+  }, [content.imageUrl]);
 
   // useEffect(() => {
   //   if (content.imageUrl !== backdropUrl) {
@@ -187,9 +220,8 @@ export default function Player({
                 alt="Backdrop"
                 fill
                 priority
-                className={`${styles.backdropImage} ${
-                  nextBackdropUrl ? styles.fadeOut : ""
-                }`}
+                style={{ opacity: backdropOpacity, transition: "none" }}
+                className={styles.backdropImage}
               />
 
               {nextBackdropUrl && (
@@ -198,7 +230,8 @@ export default function Player({
                   alt="New Backdrop"
                   fill
                   priority
-                  className={`${styles.backdropImage} ${styles.fadein}`}
+                  style={{ opacity: nextOpacity, transition: "none" }}
+                  className={styles.backdropImage}
                 />
               )}
             </div>
