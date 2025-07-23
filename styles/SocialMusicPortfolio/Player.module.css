@@ -239,6 +239,32 @@
   transition: transform 0.3s ease;
 }
 
+.fadeOut {
+  animation: fadeOutBackdrop 6s forwards;
+}
+
+.fadein {
+  animation: fadeInBackdrop 6s forwards;
+}
+
+@keyframes fadeOutBackdrop {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeInBackdrop {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.5;
+  }
+}
+
 .playingNotiStack {
   position: relative;
   line-height: 1.2rem;

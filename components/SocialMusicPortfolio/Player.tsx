@@ -30,6 +30,9 @@ export default function Player({
   const audioRef = useRef<HTMLAudioElement>(null);
   const [volume, setVolume] = useState([23]);
   const imgRef = useRef<HTMLImageElement>(null);
+  const [backdropUrl, setBackdropUrl] = useState(content.imageUrl);
+  const [nextBackdropUrl, setNextBackdropUrl] = useState<string | null>(null);
+  const [fadeOut, setFadeOut] = useState(false);
 
   const forceRepaintScroll = () => {
     if (typeof window !== "undefined") {
@@ -76,6 +79,24 @@ export default function Player({
       audio.volume = volume[0] / 200;
     }
   }, []);
+
+  // useEffect(() => {
+  //   if (content.imageUrl !== backdropUrl) {
+  //     setBackdropUrl(content.imageUrl);
+  //   }
+  // }, [content.imageUrl]);
+
+  useEffect(() => {
+    if (content.imageUrl !== backdropUrl) {
+      setNextBackdropUrl(content.imageUrl);
+      const timeout = setTimeout(() => {
+        setBackdropUrl(content.imageUrl); // update image after fade
+        setNextBackdropUrl(null);
+      }, 6000); // 10s
+
+      return () => clearTimeout(timeout);
+    }
+  }, [content.imageUrl]);
 
   useEffect(() => {
     const img = imgRef.current;
@@ -162,13 +183,24 @@ export default function Player({
           <div className={styles.imageWrapper}>
             <div className={styles.dynamicBackdrop}>
               <Image
-                src={content.imageUrl}
+                src={backdropUrl}
                 alt="Backdrop"
                 fill
                 priority
-                onLoad={handleBackdropLoad}
-                className={styles.backdropImage}
+                className={`${styles.backdropImage} ${
+                  nextBackdropUrl ? styles.fadeOut : ""
+                }`}
               />
+
+              {nextBackdropUrl && (
+                <Image
+                  src={nextBackdropUrl}
+                  alt="New Backdrop"
+                  fill
+                  priority
+                  className={`${styles.backdropImage} ${styles.fadein}`}
+                />
+              )}
             </div>
             <Image
               key={content.imageUrl}
