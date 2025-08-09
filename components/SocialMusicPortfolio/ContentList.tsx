@@ -12,6 +12,7 @@ interface Props {
   currentId: string;
   onSelect: (item: ContentItem) => void;
   isPlaying: boolean;
+  dominantColor: string | null;
 }
 
 export default function ContentList({
@@ -19,18 +20,28 @@ export default function ContentList({
   currentId,
   onSelect,
   isPlaying,
+  dominantColor,
 }: Props) {
   return (
     <div className={styles.listWrapper}>
       {items.map((item) => {
         const active = currentId === item.id;
         const activeAndPlaying = active && isPlaying;
+        const tint = dominantColor ?? "#a855f7";
         return (
           <Card
             key={item.id}
             className={`${styles.card} ${
               currentId === item.id ? styles.cardActive : ""
-            }`}
+            } border-0`}
+            style={
+              active
+                ? {
+                    background: `color-mix(in srgb, ${tint} 4%, transparent)`,
+                    // boxShadow: `0 0 12px color-mix(in srgb, ${tint} 25%, transparent)`, // hex + alpha (80 ≈ 50%)
+                  }
+                : undefined
+            }
             onClick={() => onSelect(item)}
           >
             <div className={styles.cardInner}>
@@ -40,7 +51,7 @@ export default function ContentList({
                   activeAndPlaying ? (
                     <Equalizer
                       size={14}
-                      color="#22c55e"
+                      color={tint}
                       playing
                       className={styles.eqIcon}
                     />
@@ -63,16 +74,6 @@ export default function ContentList({
                 )}
               </span>
               <span className={styles.cardTitle}>{item.title}</span>
-              <div className={styles.cardStats}>
-                {/* <span className={styles.statGroup}>
-                <Heart className="w-4 h-4" />
-                {item.likes}
-              </span>
-              <span className={styles.statGroup}>
-                <MessageCircle className="w-4 h-4" />
-                {item.comments}
-              </span> */}
-              </div>
             </div>
           </Card>
         );

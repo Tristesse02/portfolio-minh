@@ -144,10 +144,10 @@ export default function SocialMusicPortfolio() {
             currentId={currentContent.id}
             onSelect={handleSelectContent}
             isPlaying={isPlaying}
+            dominantColor={dominantColor}
           />
         </div>
-        
-        
+
         {/* <div className={styles.rightCol}>
           <DescriptionPanel content={currentContent} />
           <div className={styles.testimonialsCard}>

@@ -24,9 +24,9 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.cardActive {
-  background: rgba(168,85,247,0.1); /* fallback purple */
-}
+/* .cardActive {
+  background: rgba(168,85,247,0.1);
+} */
 
 .cardInner {
   display: flex;
@@ -115,12 +115,7 @@
   outline: none;
   background: rgba(255, 255, 255, 0.09);
   border-color: rgba(168, 85, 247, 0.35);
-  box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.25) inset;
-}
-
-/* active row emphasis (subtle glow) */
-.cardActive {
-  background: rgba(168, 85, 247, 0.1);
+  /* box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.25) inset; */
 }
 
 .pauseIcon {
