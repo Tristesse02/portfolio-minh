@@ -152,10 +152,11 @@ export default function Player({
         const [r, g, b] = filtered.length ? filtered[0] : palette[0];
 
         const [h, s, l] = rgbToHsl(r, g, b);
-        const intenseS = Math.min(s + 30, 100); // boost saturation
-        const adjustedL = Math.max(Math.min(l - 5, 70), 30); // tweak lightness
+        const shiftedH = (h + 5) % 360; // Optional: bias hue a bit
+        const boostedS = Math.min(s * 1.4 + 10, 100); // Bold, vibrant
+        const boostedL = Math.max(Math.min(l + 5, 85), 40); // Slight glow
 
-        const vividColor = hslToCss(h, intenseS, adjustedL);
+        const vividColor = hslToCss(shiftedH, boostedS, boostedL);
         setDominantColor(vividColor);
       } catch (err) {
         console.error("Failed to extract color:", err);

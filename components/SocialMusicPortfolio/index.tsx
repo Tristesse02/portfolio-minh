@@ -145,8 +145,9 @@ export default function SocialMusicPortfolio() {
             onSelect={handleSelectContent}
           />
         </div>
-
-        <div className={styles.rightCol}>
+        
+        
+        {/* <div className={styles.rightCol}>
           <DescriptionPanel content={currentContent} />
           <div className={styles.testimonialsCard}>
             <div className={styles.headerRow}>
@@ -166,7 +167,7 @@ export default function SocialMusicPortfolio() {
             </div>
             <Testimonials testimonials={testimonials} />
           </div>
-        </div>
+        </div> */}
       </div>
       {/* <TestimonialModal
         isOpen={isModalOpen}

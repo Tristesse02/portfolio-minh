@@ -26,6 +26,11 @@
   gap: 0.75rem;
 }
 
+.eqIcon {
+  flex: 0 0 auto;
+  display: block;
+}
+
 .statusDot {
   width: 0.75rem;
   height: 0.75rem;
