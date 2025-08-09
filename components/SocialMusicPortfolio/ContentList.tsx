@@ -1,21 +1,30 @@
 import React from "react";
 import { ContentItem } from "@/types";
 import { Card } from "@/components/ui/card";
-import { Heart, MessageCircle } from "lucide-react";
+import { Heart, MessageCircle, Pause } from "lucide-react";
 import styles from "../../styles/SocialMusicPortfolio/ContentList.module.css";
 import Equalizer from "../animation/Equalizer";
+import StaticBars from "../animation/StaticBars";
+import { Play } from "lucide-react";
 
 interface Props {
   items: ContentItem[];
   currentId: string;
   onSelect: (item: ContentItem) => void;
+  isPlaying: boolean;
 }
 
-export default function ContentList({ items, currentId, onSelect }: Props) {
+export default function ContentList({
+  items,
+  currentId,
+  onSelect,
+  isPlaying,
+}: Props) {
   return (
     <div className={styles.listWrapper}>
       {items.map((item) => {
         const active = currentId === item.id;
+        const activeAndPlaying = active && isPlaying;
         return (
           <Card
             key={item.id}
@@ -26,12 +35,33 @@ export default function ContentList({ items, currentId, onSelect }: Props) {
           >
             <div className={styles.cardInner}>
               {/* <div className={styles.statusDot} /> */}
-              <Equalizer
-                size={14}
-                color="#22c55e" // or "currentColor"
-                playing={active} // animate only if active
-                className={styles.eqIcon}
-              />
+              <span className={styles.leadingIcon}>
+                {active ? (
+                  activeAndPlaying ? (
+                    <Equalizer
+                      size={14}
+                      color="#22c55e"
+                      playing
+                      className={styles.eqIcon}
+                    />
+                  ) : (
+                    <Pause
+                      size={14}
+                      className={styles.pauseIcon}
+                      aria-label="Paused"
+                    />
+                  )
+                ) : (
+                  <>
+                    <StaticBars size={14} className={styles.staticIcon} />
+                    <Play
+                      size={14}
+                      className={styles.playIcon}
+                      aria-hidden="true"
+                    />
+                  </>
+                )}
+              </span>
               <span className={styles.cardTitle}>{item.title}</span>
               <div className={styles.cardStats}>
                 {/* <span className={styles.statGroup}>

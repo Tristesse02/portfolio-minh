@@ -143,6 +143,7 @@ export default function SocialMusicPortfolio() {
             items={filteredContent}
             currentId={currentContent.id}
             onSelect={handleSelectContent}
+            isPlaying={isPlaying}
           />
         </div>
         

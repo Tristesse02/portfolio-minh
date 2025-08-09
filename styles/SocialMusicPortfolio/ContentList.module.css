@@ -62,3 +62,46 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+/* --- leading icon container --- */
+.leadingIcon {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 14px;
+}
+
+/* inactive state */
+.staticIcon {
+  opacity: 0.75;
+  transition: opacity 0.18s ease;
+}
+
+/* hover play overlay (inactive only) */
+.playIcon {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+/* hover effects */
+.card:hover .staticIcon {
+  opacity: 0.15;
+}
+.card:hover .playIcon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* active row emphasis (subtle glow) */
+.cardActive {
+  box-shadow: 0 0 0 2px #a855f7;
+}
+
+.pauseIcon {
+  display: block;
+  opacity: 0.9;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
