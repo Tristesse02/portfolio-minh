@@ -1,15 +1,23 @@
 .listWrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  z-index: 2;
-  position: relative;
+  gap: 0.5rem;
+  padding: 0.5rem; /* small breathing space */
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06); /* or .08 for lighter */
+  /* do blur on the container, not each row (perf) */
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .card {
-  padding: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  padding: 0.75rem 1rem;
+  background: transparent;
+  border-radius: 10px;
+  transition: transform 0.12s ease, background-color 0.12s ease,
+   box-shadow 0.12s ease;
 }
 
 .cardHover {
@@ -17,7 +25,7 @@
 }
 
 .cardActive {
-  box-shadow: 0 0 0 2px #a855f7; /* Tailwind ring-purple-500 */
+  background: rgba(168,85,247,0.1); /* fallback purple */
 }
 
 .cardInner {
@@ -87,21 +95,65 @@
 }
 
 /* hover effects */
+.card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
+}
+
 .card:hover .staticIcon {
   opacity: 0.15;
 }
+
 .card:hover .playIcon {
   opacity: 1;
   transform: scale(1);
 }
 
+/* focus effects */
+.card:focus-visible {
+  outline: none;
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(168, 85, 247, 0.35);
+  box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.25) inset;
+}
+
 /* active row emphasis (subtle glow) */
 .cardActive {
-  box-shadow: 0 0 0 2px #a855f7;
+  background: rgba(168, 85, 247, 0.1);
 }
 
 .pauseIcon {
   display: block;
   opacity: 0.9;
   transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+/* Divider look (optional): remove gap and use separators instead of borders */
+.listWrapper.compact {
+  gap: 0;
+}
+.listWrapper.compact .card {
+  border-radius: 0;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.listWrapper.compact .card:first-child {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+.listWrapper.compact .card:last-child {
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+@supports not (
+  (-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))
+) {
+  .listWrapper {
+    background: rgba(20, 20, 20, 0.6);
+  } /* non-blur fallback */
 }
