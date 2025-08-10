@@ -6,6 +6,7 @@ import styles from "../../styles/SocialMusicPortfolio/ContentList.module.css";
 import Equalizer from "../animation/Equalizer";
 import StaticBars from "../animation/StaticBars";
 import { Play } from "lucide-react";
+import { mixPercentForBg, normalizeTint } from "@/utils/colorEnhancement";
 
 interface Props {
   items: ContentItem[];
@@ -22,12 +23,22 @@ export default function ContentList({
   isPlaying,
   dominantColor,
 }: Props) {
+  const rawTint = dominantColor ?? "#a855f7";
+  const vividTint = normalizeTint(rawTint);
+  const bgMix = mixPercentForBg(rawTint);
+
   return (
-    <div className={styles.listWrapper}>
+    <div
+      className={`${styles.listWrapper} ${styles.softFrame}`}
+      style={{
+        ["--tint" as any]: vividTint,
+        ["--bgMix" as any]: bgMix,
+        ["--hoverBoost" as any]: "3%",
+      }}
+    >
       {items.map((item) => {
         const active = currentId === item.id;
         const activeAndPlaying = active && isPlaying;
-        const tint = dominantColor ?? "#a855f7";
         return (
           <Card
             key={item.id}
@@ -37,7 +48,7 @@ export default function ContentList({
             style={
               active
                 ? {
-                    background: `color-mix(in srgb, ${tint} 4%, transparent)`,
+                    // background: `color-mix(in srgb, ${tint} 8%, transparent)`,
                     // boxShadow: `0 0 12px color-mix(in srgb, ${tint} 25%, transparent)`, // hex + alpha (80 ≈ 50%)
                   }
                 : undefined
@@ -45,13 +56,12 @@ export default function ContentList({
             onClick={() => onSelect(item)}
           >
             <div className={styles.cardInner}>
-              {/* <div className={styles.statusDot} /> */}
               <span className={styles.leadingIcon}>
                 {active ? (
                   activeAndPlaying ? (
                     <Equalizer
                       size={14}
-                      color={tint}
+                      color={rawTint}
                       playing
                       className={styles.eqIcon}
                     />
