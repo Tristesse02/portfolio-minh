@@ -77,11 +77,11 @@ export default function FanInviteModal({
                   as="h3"
                   className="text-lg font-medium leading-6 text-gray-900 dark:text-white"
                 >
-                  🤝 Fan Club Application
+                  🤝 What do you like about Minh?
                 </Dialog.Title>
                 <div className="mt-2">
                   <p className="text-sm text-gray-600 dark:text-gray-300">
-                    Enter your email to request a one-time invite link. 💌
+                    Enter your email address to valide. 💌
                   </p>
                   <input
                     type="email"

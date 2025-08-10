@@ -45,14 +45,6 @@ export default function ContentList({
             className={`${styles.card} ${
               currentId === item.id ? styles.cardActive : ""
             } border-0`}
-            style={
-              active
-                ? {
-                    // background: `color-mix(in srgb, ${tint} 8%, transparent)`,
-                    // boxShadow: `0 0 12px color-mix(in srgb, ${tint} 25%, transparent)`, // hex + alpha (80 ≈ 50%)
-                  }
-                : undefined
-            }
             onClick={() => onSelect(item)}
           >
             <div className={styles.cardInner}>

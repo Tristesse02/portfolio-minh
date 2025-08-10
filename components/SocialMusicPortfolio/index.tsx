@@ -3,7 +3,7 @@
 
 import { ContentItem } from "@/types";
 import { UserPlus } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 import SidebarProfile from "@/components/SocialMusicPortfolio/SidebarProfile";
 import TabNav from "@/components/SocialMusicPortfolio/TabNav";
@@ -18,6 +18,20 @@ import FanInviteModal from "../modal/FanInviteModal";
 import rawContentItems from "@/data/contentItems.json" assert { type: "json" };
 import fallbackTestimonial from "@/data/testimonials.json" assert { type: "json" };
 import FloatingMusicPlayer from "./FloatingMusicPlayer";
+import TestimonialPlaylist from "./TestimonialPlaylist";
+import TestimonialShelf from "./TestimonialShelf";
+import TestimonialCenterStage from "./TestimonialCenterStage";
+
+type Testimonial = {
+  id: string;
+  name: string;
+  role?: string;
+  company?: string;
+  message: string;
+  avatar?: string;
+  tags?: string[];
+  weight?: number;
+};
 
 export default function SocialMusicPortfolio() {
   const contentItems = rawContentItems as ContentItem[];
@@ -28,7 +42,7 @@ export default function SocialMusicPortfolio() {
     contentItems[0]
   );
 
-  const [testimonials, setTestimonials] = useState([]);
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [showInviteModal, setShowInviteModal] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -106,6 +120,21 @@ export default function SocialMusicPortfolio() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const mappedTestimonials: Testimonial[] = useMemo(
+    () =>
+      testimonials.map((t, i) => ({
+        id: t.id ?? String(i),
+        name: t.name,
+        role: t.role,
+        company: t.company,
+        message: t.message,
+        avatar: t.avatar,
+        tags: t.tags ?? [],
+        weight: t.weight ?? 0,
+      })),
+    [testimonials]
+  );
+
   return (
     <div className={styles.pageWrapper}>
       <header
@@ -146,6 +175,25 @@ export default function SocialMusicPortfolio() {
             isPlaying={isPlaying}
             dominantColor={dominantColor}
           />
+          <section className={styles.section}>
+            <div className={styles.sectionHeader}>
+              <div className={styles.titleRow}>
+                <h2 className={styles.sectionTitle}>Fans</h2>
+                <span className={styles.countPill}>
+                  {testimonials.length} testimonials
+                </span>
+              </div>
+
+              <button className={styles.inviteBtn} onClick={handleTestimonial}>
+                <UserPlus width={16} height={16} />
+                <span className={styles.inviteLabel}>Leave a shout-out</span>
+              </button>
+            </div>
+            <TestimonialCenterStage
+              items={mappedTestimonials}
+              dominantColor={dominantColor}
+            />
+          </section>
         </div>
 
         {/* <div className={styles.rightCol}>

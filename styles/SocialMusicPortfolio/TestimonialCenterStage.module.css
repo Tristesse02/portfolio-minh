@@ -1,0 +1,126 @@
+.wrapper {
+  --tint: #a855f7;
+  --bgMix: 8%;
+}
+
+/* header */
+.railHeader {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.railHeader h3 {
+  font-weight: 600;
+}
+.count {
+  opacity: 0.7;
+  font-size: 0.9rem;
+}
+
+/* scroller */
+.rail {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.nav {
+  border: 0;
+  background: transparent;
+  font-size: 1.4rem;
+  line-height: 1;
+  opacity: 0.6;
+  padding: 0.25rem 0.35rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.nav:hover {
+  background: rgba(0, 0, 0, 0.06);
+  opacity: 0.9;
+}
+
+.scroller {
+  /* keep your existing props */
+  position: relative;
+  isolation: isolate; /* new stacking context */
+  padding-inline: 12px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: clamp(280px, 52vw, 520px);
+  gap: 0.8rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 12px;
+  padding: 0.5rem 0.25rem; /* a bit more vertical padding so bottom shadows show */
+
+  /* REMOVE this — it clips shadows at the sides */
+  /* mask-image: linear-gradient(to right, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%); */
+}
+.scroller::-webkit-scrollbar {
+  display: none;
+}
+
+/* cards */
+.card {
+  border: none;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  border-radius: 16px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  padding: 0.9rem 1rem;
+  position: relative;
+  z-index: 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  overflow: visible;
+}
+
+/* Apply same animation for hover and active */
+.card:hover {
+  background: rgba(255, 255, 255, 0.65);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px); /* same shrink/lift effect */
+  z-index: 10;
+}
+
+/* content */
+.head {
+  display: flex;
+  gap: 0.65rem;
+  align-items: center;
+}
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 9999px;
+  object-fit: cover;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+}
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.name {
+  font-weight: 600;
+}
+.role {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+/* text */
+.preview {
+  display: -webkit-box;
+  -webkit-line-clamp: unset;
+  overflow: hidden;
+  opacity: 0.8;
+}
+.quote {
+  line-height: 1.6;
+}
+
+.wrapper,
+.scroller {
+  overflow: visible;
+}
