@@ -5,7 +5,7 @@ import { ContentItem } from "@/types";
 import { Button } from "@/components/ui/button";
 // import { FastAverageColor } from "fast-average-color";
 import { useEffect, useRef, useState } from "react";
-import { Heart, Pause, Play, Volume2 } from "lucide-react";
+import { Pause, Play, Volume2 } from "lucide-react";
 
 import Slider from "../../components/ui/Slider";
 import styles from "../../styles/SocialMusicPortfolio/Player.module.css";
@@ -35,23 +35,6 @@ export default function Player({
   const [nextBackdropUrl, setNextBackdropUrl] = useState<string | null>(null);
   const [backdropOpacity, setBackdropOpacity] = useState(MAX_BACKDROP_OPACITY);
   const [nextOpacity, setNextOpacity] = useState(0);
-
-  const forceRepaintScroll = () => {
-    if (typeof window !== "undefined") {
-      requestAnimationFrame(() => {
-        const x = window.scrollX;
-        const y = window.scrollY;
-        window.scrollTo(x, y + 100);
-        window.scrollTo(x, y);
-      });
-    }
-  };
-
-  const handleBackdropLoad = () => {
-    setTimeout(() => {
-      forceRepaintScroll();
-    }, 400); // wait for 50 milliseconds
-  };
 
   useEffect(() => {
     if (isPlaying) {

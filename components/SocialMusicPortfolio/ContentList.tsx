@@ -1,7 +1,7 @@
 import React from "react";
 import { ContentItem } from "@/types";
 import { Card } from "@/components/ui/card";
-import { Heart, MessageCircle, Pause } from "lucide-react";
+import { Pause } from "lucide-react";
 import styles from "../../styles/SocialMusicPortfolio/ContentList.module.css";
 import Equalizer from "../animation/Equalizer";
 import StaticBars from "../animation/StaticBars";
@@ -31,8 +31,11 @@ export default function ContentList({
     <div
       className={`${styles.listWrapper} ${styles.softFrame}`}
       style={{
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ["--tint" as any]: vividTint,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ["--bgMix" as any]: bgMix,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ["--hoverBoost" as any]: "3%",
       }}
     >

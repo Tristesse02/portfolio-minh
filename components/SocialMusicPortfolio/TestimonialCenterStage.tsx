@@ -98,7 +98,9 @@ export default function TestimonialCenterStage({
       className={styles.wrapper}
       style={
         {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           ["--tint" as any]: vividTint,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           ["--bgMix" as any]: bgMix,
         } as React.CSSProperties
       }

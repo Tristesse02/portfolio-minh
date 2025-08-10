@@ -5,12 +5,9 @@ import { ContentItem } from "@/types";
 import { UserPlus } from "lucide-react";
 import { useState, useEffect, useMemo } from "react";
 
-import SidebarProfile from "@/components/SocialMusicPortfolio/SidebarProfile";
 import TabNav from "@/components/SocialMusicPortfolio/TabNav";
 import Player from "@/components/SocialMusicPortfolio/Player";
 import ContentList from "@/components/SocialMusicPortfolio/ContentList";
-import DescriptionPanel from "@/components/SocialMusicPortfolio/DescriptionPanel";
-import Testimonials from "@/components/SocialMusicPortfolio/Testimonials";
 import styles from "../../styles/SocialMusicPortfolio/index.module.css";
 import TestimonialModal from "../modal/TestimonialModal";
 import FanInviteModal from "../modal/FanInviteModal";
@@ -18,8 +15,6 @@ import FanInviteModal from "../modal/FanInviteModal";
 import rawContentItems from "@/data/contentItems.json" assert { type: "json" };
 import fallbackTestimonial from "@/data/testimonials.json" assert { type: "json" };
 import FloatingMusicPlayer from "./FloatingMusicPlayer";
-import TestimonialPlaylist from "./TestimonialPlaylist";
-import TestimonialShelf from "./TestimonialShelf";
 import TestimonialCenterStage from "./TestimonialCenterStage";
 
 type Testimonial = {
@@ -152,10 +147,6 @@ export default function SocialMusicPortfolio() {
       </header>
 
       <div className={styles.pageContent}>
-        {/* <div className={styles.leftCol}>
-          <SidebarProfile />
-        </div> */}
-
         <div className={styles.centerCol}>
           <Player
             content={currentContent}
@@ -195,33 +186,7 @@ export default function SocialMusicPortfolio() {
             />
           </section>
         </div>
-
-        {/* <div className={styles.rightCol}>
-          <DescriptionPanel content={currentContent} />
-          <div className={styles.testimonialsCard}>
-            <div className={styles.headerRow}>
-              <h3 className="font-bold">Fans</h3>
-              <div className={styles.tooltipWrapper}>
-                <button
-                  className={styles.addUser}
-                  type="button"
-                  onClick={handleTestimonial}
-                >
-                  <UserPlus style={{ width: "18px", height: "18px" }} />
-                </button>
-                <span className={styles.tooltipText}>
-                  Want to be a fan and leave a comment? DM for inv 🎉
-                </span>
-              </div>
-            </div>
-            <Testimonials testimonials={testimonials} />
-          </div>
-        </div> */}
       </div>
-      {/* <TestimonialModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      /> */}
       <FanInviteModal
         isOpen={showInviteModal}
         onClose={() => setShowInviteModal(false)}
