@@ -3,7 +3,7 @@
 
 import { ContentItem } from "@/types";
 import { UserPlus } from "lucide-react";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 
 import TabNav from "@/components/SocialMusicPortfolio/TabNav";
 import Player from "@/components/SocialMusicPortfolio/Player";
@@ -37,6 +37,7 @@ export default function SocialMusicPortfolio() {
     contentItems[0]
   );
 
+  const [scrollOpacity, setScrollOpacity] = useState(0);
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [showInviteModal, setShowInviteModal] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -56,6 +57,8 @@ export default function SocialMusicPortfolio() {
     setCurrentContent(item);
     setIsPlaying(true);
     setCurrentTime(0);
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleTestimonial = () => {
@@ -108,7 +111,9 @@ export default function SocialMusicPortfolio() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0);
+      const maxScroll = 120; // adjust how much scroll until fully white
+      const progress = Math.min(window.scrollY / maxScroll, 1);
+      setScrollOpacity(progress);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -133,7 +138,14 @@ export default function SocialMusicPortfolio() {
   return (
     <div className={styles.pageWrapper}>
       <header
-        className={`${styles.header} ${isScrolled ? styles.scrolled : ""}`}
+        className={`${styles.header}`}
+        data-solid={scrollOpacity > 0.4 ? "1" : "0"}
+        style={{
+          ["--headerAlpha" as any]: scrollOpacity,
+          ["--accent" as any]: dominantColor ?? "#7dd3fc", // cyan accent (↔ change here)
+          boxShadow: `0 8px 24px rgba(0,0,0,${0.2 * scrollOpacity})`,
+          zIndex: 50,
+        }}
       >
         <div className={styles.headerInner}>
           <div className={styles.logo}>
@@ -157,7 +169,7 @@ export default function SocialMusicPortfolio() {
             setDominantColor={setDominantColor}
           />
           <h2 className={styles.contentHeading}>
-            {activeTab === "about" ? "Get to know me" : activeTab}
+            {activeTab === "about" ? "Blogs" : activeTab}
           </h2>
           <ContentList
             items={filteredContent}
@@ -199,14 +211,14 @@ export default function SocialMusicPortfolio() {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
       />
-      <FloatingMusicPlayer
+      {/* <FloatingMusicPlayer
         content={currentContent}
         isPlaying={isPlaying}
         currentTime={currentTime}
         duration={duration}
         onPlayPause={handlePlayPause}
         dominantColor={dominantColor}
-      />
+      /> */}
     </div>
   );
 }

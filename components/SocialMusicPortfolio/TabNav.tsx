@@ -20,7 +20,7 @@ export default function TabNav({ activeTab, setActiveTab }: Props) {
           }`}
         >
           {tab === "about"
-            ? "About Me"
+            ? "Blogs"
             : tab === "projects"
             ? "Projects"
             : "Work Experiences"}

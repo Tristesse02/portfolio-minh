@@ -261,7 +261,7 @@ export default function ArticleClient({ params }: { params: { id: string } }) {
         </article>
 
         {/* Engagement Section */}
-        <div className="mt-12 pt-8 border-t border-gray-200">
+        {/* <div className="mt-12 pt-8 border-t border-gray-200">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-6">
               <Button variant="ghost" className="flex items-center gap-2">
@@ -278,7 +278,7 @@ export default function ArticleClient({ params }: { params: { id: string } }) {
               </Button>
             </div>
           </div>
-        </div>
+        </div> */}
       </main>
 
       {/* Floating Music Player */}
@@ -300,9 +300,8 @@ export default function ArticleClient({ params }: { params: { id: string } }) {
             </div>
 
             <div className="flex-1 flex items-center gap-4">
-              <Button
+              <button
                 onClick={togglePlay}
-                size="sm"
                 className="w-8 h-8 rounded-full"
               >
                 {isPlaying ? (
@@ -310,7 +309,7 @@ export default function ArticleClient({ params }: { params: { id: string } }) {
                 ) : (
                   <Play className="w-3 h-3 ml-0.5" />
                 )}
-              </Button>
+              </button>
 
               <div className="flex-1">
                 <div className="w-full bg-gray-200 rounded-full h-1">

@@ -5,11 +5,13 @@
   gap: 0.5rem;
   padding: 0.5rem; /* small breathing space */
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.06); /* or .08 for lighter */
+  background: var(--card-bg-dark); /* or .08 for lighter */
   /* do blur on the container, not each row (perf) */
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  /* border: 1px solid rgba(255, 255, 255, 0.1); */
+  border: 1px solid var(--hairline-dark);
+  color: var(--card-fg-dark);
 }
 
 .card {
@@ -45,6 +47,7 @@
 }
 
 .cardTitle {
+  color: color-mix(in srgb, var(--card-fg-dark) 94%, transparent);
   font-weight: 500;
 }
 
@@ -94,7 +97,7 @@
 
 /* hover effects */
 .card:hover .staticIcon {
-  opacity: 0.15;
+  opacity: 0.18;
 }
 
 .card:hover .playIcon {
@@ -105,8 +108,9 @@
 /* focus effects */
 .card:focus-visible {
   outline: none;
-  background: rgba(255, 255, 255, 0.09);
-  border-color: rgba(168, 85, 247, 0.35);
+  background: color-mix(in srgb, #fff 10%, var(--card-bg-dark));
+  border-color: color-mix(in srgb, var(--tint) 45%, var(--hairline-dark));
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--tint) 28%, transparent);
   /* box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.25) inset; */
 }
 
@@ -125,7 +129,7 @@
   border-left: 0;
   border-right: 0;
   border-top: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid var(--hairline-dark);
 }
 .listWrapper.compact .card:first-child {
   border-top-left-radius: 12px;
@@ -134,7 +138,7 @@
 .listWrapper.compact .card:last-child {
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
-  border-bottom-color: rgba(255, 255, 255, 0.1);
+  border-bottom-color: var(--hairline-dark);
 }
 
 @supports not (
@@ -146,8 +150,8 @@
 }
 
 .softFrame {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: var(--card-bg-dark);
+  border: 1px solid var(--hairline-dark);
   border-radius: 16px;
   padding: 0.75rem;
   backdrop-filter: blur(8px);
@@ -155,15 +159,43 @@
 }
 
 .softFrame .card.cardActive {
-  background: color-mix(in srgb, var(--tint) var(--bgMix, 8%), transparent);
-  box-shadow: 0 6px 18px color-mix(in srgb, var(--tint) 18%, transparent),
-    0 -1px 0 rgba(255, 255, 255, 0.06) inset;
+  background: color-mix(
+    in srgb,
+    var(--tint) calc(max(var(--bgMix, 10%), var(--neon-bgmin))),
+    var(--card-bg-dark)
+  );
+  box-shadow: 0 10px 26px
+      color-mix(in srgb, var(--tint) var(--neon-halo), transparent),
+    0 0 0 1px color-mix(in srgb, var(--tint) var(--neon-ring), transparent),
+    0 -1px 0 rgba(255, 255, 255, 0.06) inset,
+    inset 0 -8px 24px color-mix(in srgb, var(--tint) 16%, transparent);
+  transform: translateY(0);
 }
 
+/* .softFrame .card.cardActive {
+  background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--tint) 16%, transparent) 0%,
+      transparent 60%
+    ),
+    rgba(255, 255, 255, 0.06);
+
+  backdrop-filter: blur(14px) saturate(120%);
+  -webkit-backdrop-filter: blur(14px) saturate(120%);
+
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35),
+    0 0 0 1px color-mix(in srgb, var(--tint) 28%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -10px 26px color-mix(in srgb, var(--tint) 18%, transparent);
+
+  transform: translateY(0);
+  position: relative;
+} */
+
 .softFrame .card:hover:not(.cardActive) {
-  background: color-mix(in srgb, #000 6%, transparent);
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
-  border-color: rgba(255, 255, 255, 0.14);
+  background: color-mix(in srgb, #fff 12%, var(--card-bg-dark));
+  border-color: var(--hairline-dark);
+  box-shadow: 0 8px 22px rgba(0,0,0,.18);
   transform: translateY(-1px);
 }
 
@@ -171,10 +203,82 @@
 .softFrame .card.cardActive:hover {
   background: color-mix(
     in srgb,
-    var(--tint) calc(var(--bgMix, 8%) + var(--hoverBoost, 3%)),
-    transparent
+    var(--tint)
+      calc(max(var(--bgMix, 10%), var(--neon-bgmin)) + var(--neon-boost)),
+    var(--card-bg-dark)
   );
-  box-shadow: 0 10px 28px color-mix(in srgb, var(--tint) 20%, transparent),
-    0 -1px 0 rgba(255, 255, 255, 0.06) inset;
+  box-shadow: 0 12px 30px
+      color-mix(in srgb, var(--tint) calc(var(--neon-halo) + 4%), transparent),
+    0 0 0 1px
+      color-mix(in srgb, var(--tint) calc(var(--neon-ring) + 4%), transparent),
+    0 -1px 0 rgba(255, 255, 255, 0.06) inset,
+    inset 0 -10px 28px color-mix(in srgb, var(--tint) 18%, transparent);
   transform: translateY(-1px);
 }
+
+/* .softFrame .card.cardActive:hover {
+  background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--tint) 20%, transparent) 0%,
+      transparent 60%
+    ),
+    rgba(255, 255, 255, 0.08);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4),
+    0 0 0 1px color-mix(in srgb, var(--tint) 34%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -12px 30px color-mix(in srgb, var(--tint) 20%, transparent);
+  transform: translateY(-1px);
+} */
+
+.softFrame .card.cardActive .cardTitle {
+  color: color-mix(in srgb, #fff 96%, var(--tint) 4%);
+  font-weight: 600;
+}
+.softFrame .card.cardActive .leadingIcon,
+.softFrame .card.cardActive .staticIcon,
+.softFrame .card.cardActive .playIcon,
+.softFrame .card.cardActive .pauseIcon {
+  color: color-mix(in srgb, #fff 92%, var(--tint) 8%);
+}
+
+/* .leadingIcon,
+.staticIcon,
+.pauseIcon,
+.playIcon {
+  color: color-mix(in srgb, var(--card-fg-dark) 90%, transparent);
+}
+
+.softFrame .card.cardActive .cardTitle {
+  color: color-mix(in srgb, #fff 92%, var(--tint) 8%);
+  font-weight: 600;
+}
+.softFrame .card.cardActive .leadingIcon,
+.softFrame .card.cardActive .staticIcon,
+.softFrame .card.cardActive .playIcon,
+.softFrame .card.cardActive .pauseIcon {
+  color: color-mix(in srgb, #fff 90%, var(--tint) 10%);
+}
+
+.softFrame .card.cardActive::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0.35;
+  mix-blend-mode: overlay;
+
+  background-image: radial-gradient(
+      1px 1px at 25% 35%,
+      rgba(255, 255, 255, 0.06),
+      transparent 60%
+    ),
+    radial-gradient(
+      1px 1px at 65% 25%,
+      rgba(255, 255, 255, 0.05),
+      transparent 60%
+    ),
+    radial-gradient(1px 1px at 40% 70%, rgba(0, 0, 0, 0.06), transparent 60%),
+    radial-gradient(1px 1px at 80% 60%, rgba(0, 0, 0, 0.05), transparent 60%);
+  background-size: 160px 160px, 160px 160px, 160px 160px, 160px 160px;
+} */

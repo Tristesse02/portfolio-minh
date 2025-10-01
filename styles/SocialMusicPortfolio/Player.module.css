@@ -1,12 +1,13 @@
 .playerContainer {
+  background: var(--card-bg-dark);
+  color: var(--card-fg-dark);
+  border: 1px solid var(--hairline-dark);
+  border-radius: 0.375rem;
   z-index: 1;
   margin-bottom: 1.5rem;
-  overflow: visible !important;
-  border-radius: 0.375rem;
-  /* box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); */
+  overflow: visible !important; /* box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); */
   min-height: 25rem;
 }
-
 .imageWrapper {
   position: relative;
   width: 100%;
@@ -14,7 +15,6 @@
   overflow: visible;
   z-index: 1;
 }
-
 .overlay {
   position: absolute;
   bottom: 0;
@@ -22,7 +22,6 @@
   right: 0;
   z-index: 2;
 }
-
 .controls {
   position: relative;
   z-index: 2;
@@ -33,7 +32,6 @@
   pointer-events: none; /* prevents hover/click while hidden */
   border-radius: 0.375rem;
 }
-
 .controls::before {
   content: "";
   position: absolute;
@@ -41,7 +39,6 @@
   z-index: -1;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(4px);
-
   -webkit-mask-image: linear-gradient(to top, black 30%, transparent 100%),
     linear-gradient(to right, black 85%, transparent 100%);
   -webkit-mask-composite: destination-in;
@@ -49,75 +46,65 @@
   mask-image: linear-gradient(to top, black 30%, transparent 100%),
     linear-gradient(to right, black 85%, transparent 100%);
 }
-
 .controlsInner {
   position: relative;
   z-index: 1; /* Ensures child content is above fade */
 }
-
 .controlsTop {
   display: flex;
   align-items: center;
   gap: 1rem;
   margin-bottom: 0.5rem;
 }
-
 .playButton {
   width: 2.5rem;
   height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 9999px;
   background-color: white;
   color: black;
   cursor: pointer;
 }
-
 .progressBar {
   flex: 1;
   background-color: #8d8d8d;
   height: 0.25rem;
   border-radius: 9999px;
   opacity: 0.7;
-
   -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
   mask-image: linear-gradient(to right, black 85%, transparent 100%);
 }
-
 .progress {
   background-color: white;
   height: 100%;
   border-radius: 9999px;
   transition: width 1s ease;
 }
-
 .iconButton {
   height: 36px;
   width: 40px;
   color: white;
   background: none;
 }
-
 .iconButton:hover {
   background-color: rgb(255 255 255 / 0.2);
 }
-
 .timestamp {
-  color: white;
+  color: color-mix(in srgb, #fff 90%, transparent);
   font-size: 0.875rem;
 }
-
 .trackInfo {
-  color: white;
+  color: color-mix(in srgb, #fff 92%, transparent);
 }
-
 .trackInfo h3 {
   font-weight: 600;
 }
-
 .trackInfo p {
   font-size: 0.875rem;
   color: rgba(255, 255, 255, 0.8);
 }
-
 .infoButton {
   height: 36px;
   width: 40px;
@@ -127,16 +114,13 @@
   padding: 0.25rem;
   border-radius: 0.375rem;
 }
-
 .infoButton:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
-
 .icon {
   width: 1rem;
   height: 1rem;
 }
-
 .bottomRightControls {
   position: absolute;
   bottom: 0.75rem;
@@ -144,13 +128,11 @@
   display: flex;
   gap: 0.5rem;
 }
-
 .titleStack {
   position: relative;
   height: 1.5em; /* or whatever height fits your font */
   overflow: hidden;
 }
-
 .titleLayer {
   position: absolute;
   top: 0;
@@ -161,11 +143,9 @@
   animation: titleFade 7s infinite;
   transition: opacity 0.5s ease-in-out;
 }
-
 .titleLayerSecond {
   animation-delay: 3.5s;
 }
-
 @keyframes titleFade {
   0% {
     opacity: 0;
@@ -183,7 +163,6 @@
     opacity: 0;
   }
 }
-
 .fadeImage {
   width: 100%;
   height: 100%;
@@ -193,11 +172,13 @@
   border-radius: 0.375rem;
   animation: fadeInImage 0.7s ease-in-out forwards;
   z-index: 1;
-
-  -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
-  mask-image: linear-gradient(to right, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(
+    to right,
+    black 100%,
+    transparent 100%
+  ); /*transition from left to right*/
+  mask-image: linear-gradient(to right, black 100%, transparent 100%);
 }
-
 @keyframes fadeInImage {
   from {
     opacity: 0;
@@ -206,7 +187,6 @@
     opacity: 1;
   }
 }
-
 @keyframes repaintFix {
   0% {
     opacity: 0.99;
@@ -215,7 +195,6 @@
     opacity: 1;
   }
 }
-
 .dynamicBackdrop {
   position: absolute;
   top: 50%;
@@ -230,25 +209,21 @@
   will-change: transform, opacity;
   animation: repaintFix 0.01s;
 }
-
 .backdropImage {
   object-fit: cover;
   object-position: center;
   transform: scale(1.4);
-  filter: blur(60px) brightness(1.1) contrast(1.4) saturate(1.5);
+  filter: blur(52px) brightness(1.2) contrast(1.12) saturate(1.08); /* Control the backdrop */
 }
-
 .playingNotiStack {
   position: relative;
   line-height: 1.2rem;
   width: 10rem;
 }
-
 .commonPlayingText {
   font-size: 0.875rem;
   color: #fffc;
 }
-
 .nowPlaying {
   position: absolute;
   top: 0;
@@ -256,11 +231,9 @@
   opacity: 1;
   transition: opacity 1s ease-in-out;
 }
-
 .notNowPlaying {
   opacity: 0;
 }
-
 .onPause {
   position: absolute;
   top: 0;
@@ -268,40 +241,53 @@
   opacity: 1;
   transition: opacity 0.7s ease-in-out;
 }
-
 .notOnPause {
   opacity: 0;
 }
-
 .flexRowLayout {
   display: flex;
+  position: relative;
   flex-direction: row;
-  width: 100%;
-  /* gap: 1.5rem; */
-  /* padding: 1rem; */
+  width: 100%; /* gap: 1.5rem; */ /* padding: 1rem; */
   box-sizing: border-box;
   align-items: stretch;
   overflow: visible !important;
-
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   border-radius: 0.375rem;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: white;
+  border: 1px solid var(--hairline-dark);
+  color: var(--card-fg-dark);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   max-width: 100%;
 }
-
+.flexRowLayout::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0; /* place the seam glow roughly where image → text switches. Adjust left % until it lines up perfectly on your layout. */
+  left: 58%;
+  width: 44px;
+  pointer-events: none;
+  border-radius: 0.375rem;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--tint) 38%, transparent) 50%,
+    transparent 100%
+  );
+  filter: blur(14px);
+  opacity: 0.6;
+  z-index: 1; /* above ::before scrim, below text */
+}
 .leftPanel {
   flex: 0 0 60%;
   min-width: 280px;
   position: relative;
   overflow: visible !important;
 }
-
 .rightPanel {
+  z-index: 5;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -310,52 +296,73 @@
   padding-right: 1rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  position: relative;
+  isolation: isolate; /* keep effects local */
+  background: rgba(
+    12,
+    12,
+    14,
+    0.5
+  ); /* How much you want the image color to get to the right*/
 }
-
-/* .leftPanel:hover .controls { */
+.rightPanel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 0.375rem; /* match container */
+  background: linear-gradient(
+    to left,
+    rgba(12, 12, 14, 0.94) 38%,
+    rgba(12, 12, 14, 0.88) 55%,
+    rgba(12, 12, 14, 0.78) 70%,
+    rgba(12, 12, 14, 0.55) 82%,
+    rgba(12, 12, 14, 0) 100%
+  );
+  backdrop-filter: none; /* no blur on text side */
+  -webkit-backdrop-filter: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  z-index: 0;
+}
+.rightPanel > * {
+  position: relative;
+  z-index: 1;
+} /* .leftPanel:hover .controls { */
 .playerContainer:hover .controls {
   opacity: 1;
   pointer-events: auto;
   border-radius: 0.375rem;
 }
-
 .lyricBlock {
   white-space: pre-wrap;
   font-size: 0.95rem;
   line-height: 1.5rem;
   opacity: 0.9;
 }
-
 .lyricTitle {
-  color: black;
+  color: #f3f4f6;
   font-weight: 600;
   font-size: 1.5rem;
   margin-bottom: 0.75rem;
 }
-
 .lyricDescription {
-  color: black;
+  color: #d1d5db;
 }
-
 .titleRow {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
-
 .titleGroup {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-
 .volumeWrapper {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   position: relative;
 }
-
 .volumeSlider {
   width: 0;
   opacity: 0;
@@ -364,7 +371,6 @@
   transform: translateX(-10px); /* optional, makes it “slide in” */
   padding-block: 0.4rem;
 }
-
 .volumeWrapper:hover .volumeSlider {
   width: 5rem; /* or use min-width if needed */
   opacity: 1;

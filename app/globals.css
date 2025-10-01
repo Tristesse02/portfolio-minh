@@ -76,6 +76,20 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  --page-bg-dark: #0f1113; /* charcoal */
+  --page-fg-dark: #f6f7f8; /* near-white text */
+  --card-bg-dark: #17191d; /* elevated surface */
+  --card-fg-dark: #f6f7f8;
+  --hairline-dark: rgba(255, 255, 255, 0.1);
+  --backdrop-dark: 0.18; /* player glow opacity cap */
+  --row-hover-lift: 12%; /* how much to lighten on hover */
+  --row-hover-ring: 0.18; /* outer shadow strength */
+  --row-hover-border: 18%;
+  --neon-ring: 28%; /* edge glow strength */
+  --neon-halo: 22%; /* outer shadow strength */
+  --neon-bgmin: 16%; /* min tint mix for the chip */
+  --neon-boost: 3%; /* extra on hover */
 }
 
 .dark {
@@ -110,6 +124,11 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+}
+
+body {
+  background: var(--page-bg-dark);
+  color: var(--page-fg-dark);
 }
 
 @layer base {

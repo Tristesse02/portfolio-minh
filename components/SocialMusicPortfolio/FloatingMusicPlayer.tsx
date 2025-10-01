@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { Pause, Play } from "lucide-react";
 import { ContentItem } from "@/types";
 
@@ -42,9 +41,8 @@ export default function FloatingMusicPlayer({
 
           {/* CENTER: controls + progress */}
           <div className="min-w-0 flex items-center gap-3">
-            <Button
+            <button
               onClick={onPlayPause}
-              size="sm"
               className="w-8 h-8 rounded-full bg-white text-black hover:bg-white/90 shadow"
               aria-label={isPlaying ? "Pause" : "Play"}
             >
@@ -53,7 +51,7 @@ export default function FloatingMusicPlayer({
               ) : (
                 <Play className="w-3 h-3 ml-0.5" />
               )}
-            </Button>
+            </button>
 
             <span className="shrink-0 text-xs tabular-nums text-black/60">
               {fmt(currentTime)}

@@ -2,7 +2,6 @@ import Image from "next/image";
 // @ts-expect-error ColorThief has no types, imported as CommonJS default
 import ColorThief from "colorthief";
 import { ContentItem } from "@/types";
-import { Button } from "@/components/ui/button";
 // import { FastAverageColor } from "fast-average-color";
 import { useEffect, useRef, useState } from "react";
 import { Pause, Play, Volume2 } from "lucide-react";
@@ -258,9 +257,8 @@ export default function Player({
                   </div>
                   <div className={styles.trackInfo}>
                     <div className={styles.titleRow}>
-                      <Button
+                      <button
                         onClick={onPlayPause}
-                        size="sm"
                         className={styles.playButton}
                       >
                         {isPlaying ? (
@@ -268,7 +266,7 @@ export default function Player({
                         ) : (
                           <Play className="w-4 h-4 ml-0.5" />
                         )}
-                      </Button>
+                      </button>
                       <div className={styles.titleGroup}>
                         <div className={styles.titleStack}>
                           <span className={styles.titleLayer}>
