@@ -1,7 +1,7 @@
 .playerContainer {
   background: var(--card-bg-dark);
   color: var(--card-fg-dark);
-  border: 1px solid var(--hairline-dark);
+  border: none;
   border-radius: 0.375rem;
   z-index: 1;
   margin-bottom: 1.5rem;
@@ -30,7 +30,7 @@
   transition: opacity 0.2s ease-in-out;
   overflow: hidden;
   pointer-events: none; /* prevents hover/click while hidden */
-  border-radius: 0.375rem;
+  border-radius: 0.375rem 0rem 0rem 0.375rem;
 }
 .controls::before {
   content: "";
@@ -169,7 +169,7 @@
   object-fit: cover;
   object-position: center;
   opacity: 0;
-  border-radius: 0.375rem;
+  border-radius: 0.375rem 0rem 0rem 0.375rem;
   animation: fadeInImage 0.7s ease-in-out forwards;
   z-index: 1;
   -webkit-mask-image: linear-gradient(
@@ -256,7 +256,7 @@
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
   border-radius: 0.375rem;
-  border: 1px solid var(--hairline-dark);
+  border: none;
   color: var(--card-fg-dark);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   max-width: 100%;
@@ -295,6 +295,7 @@
   padding-left: 2.5rem;
   padding-right: 1rem;
   padding-top: 1rem;
+  border-radius: 0rem 0.375rem 0.375rem 0rem;
   padding-bottom: 1rem;
   position: relative;
   isolation: isolate; /* keep effects local */
@@ -309,7 +310,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  border-radius: 0.375rem; /* match container */
+  border-radius: 0rem 0.375rem 0.375rem 0rem; /* match container */
   background: linear-gradient(
     to left,
     rgba(12, 12, 14, 0.94) 38%,
@@ -330,7 +331,7 @@
 .playerContainer:hover .controls {
   opacity: 1;
   pointer-events: auto;
-  border-radius: 0.375rem;
+  border-radius: 0.375rem 0rem 0rem 0.375rem;
 }
 .lyricBlock {
   white-space: pre-wrap;

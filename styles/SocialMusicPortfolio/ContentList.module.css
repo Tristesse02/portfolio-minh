@@ -10,7 +10,7 @@
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   /* border: 1px solid rgba(255, 255, 255, 0.1); */
-  border: 1px solid var(--hairline-dark);
+  border: none;
   color: var(--card-fg-dark);
 }
 
@@ -19,7 +19,7 @@
   border-radius: 10px;
   box-shadow: none;
   padding: 0.75rem 1rem;
-  border: 1px solid transparent;
+  /* border: 1px solid transparent; */ /* me and nina argue on this*/
   transition: transform 0.12s ease, background-color 0.12s ease,
     box-shadow 0.12s ease;
 }
@@ -151,7 +151,7 @@
 
 .softFrame {
   background: var(--card-bg-dark);
-  border: 1px solid var(--hairline-dark);
+  border: none;
   border-radius: 16px;
   padding: 0.75rem;
   backdrop-filter: blur(8px);
