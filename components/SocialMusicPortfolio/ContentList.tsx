@@ -23,7 +23,8 @@ export default function ContentList({
   isPlaying,
   dominantColor,
 }: Props) {
-  const rawTint = dominantColor ?? "#a855f7";
+  // const rawTint = dominantColor ?? "#a855f7";
+  const rawTint = "#ffffff";
   const vividTint = normalizeTint(rawTint);
   const bgMix = mixPercentForBg(rawTint);
 
