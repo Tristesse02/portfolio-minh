@@ -4,12 +4,20 @@
     "title": "About me",
     "altTitle": "2002 - Anne Marie",
     "category": "about",
+    "tags": [
+      "Full-stack",
+      "Creativity",
+      "Innovation",
+      "VR/XR",
+      "Dynamic Programming"
+    ],
     "description": "Hey there — welcome to my space!\n I love building meaningful things that make life a little easier and more delightful. I'm passionate about fast-paced environments, creative problem-solving, and crafting experiences that not only work well, but look interesting too. :))",
     "audioUrl": "/audio/2002.mp3",
     "imageUrl": "/image/AboutMe.jpg",
     "likes": 124,
     "comments": 23,
-    "percentage": 60
+    "percentage": 60,
+    "readTime": 10
   },
   {
     "id": "free-time",
@@ -21,7 +29,8 @@
     "imageUrl": "/image/Piano.jpg",
     "likes": 89,
     "comments": 15,
-    "percentage": 40
+    "percentage": 40,
+    "readTime": 10
   },
   {
     "id": "umass",
@@ -33,7 +42,8 @@
     "imageUrl": "/image/UMass.jpg",
     "likes": 156,
     "comments": 31,
-    "percentage": 60
+    "percentage": 60,
+    "readTime": 10
   },
   {
     "id": "beatcode",
@@ -45,7 +55,8 @@
     "imageUrl": "/image/BowDong.jpg",
     "likes": 203,
     "comments": 45,
-    "percentage": 0
+    "percentage": 0,
+    "readTime": 10
   },
   {
     "id": "cloud-cue",
@@ -57,7 +68,8 @@
     "imageUrl": "/image/CloudCue.jpg",
     "likes": 178,
     "comments": 38,
-    "percentage": 0
+    "percentage": 0,
+    "readTime": 10
   },
   {
     "id": "resume-agent",
@@ -69,7 +81,8 @@
     "imageUrl": "/image/WhyDoMen.jpg",
     "likes": 234,
     "comments": 52,
-    "percentage": 20
+    "percentage": 20,
+    "readTime": 10
   },
   {
     "id": "ohess",
@@ -81,7 +94,8 @@
     "imageUrl": "/image/Bed.jpg",
     "likes": 234,
     "comments": 52,
-    "percentage": 10
+    "percentage": 10,
+    "readTime": 10
   },
   {
     "id": "avocademy",
@@ -93,7 +107,8 @@
     "imageUrl": "/image/Plushies.jpg",
     "likes": 312,
     "comments": 67,
-    "percentage": 30
+    "percentage": 30,
+    "readTime": 10
   },
   {
     "id": "fpt-software",
@@ -105,7 +120,8 @@
     "imageUrl": "/image/fpt.jpg",
     "likes": 289,
     "comments": 54,
-    "percentage": 10
+    "percentage": 10,
+    "readTime": 10
   },
   {
     "id": "viettelai",
@@ -116,6 +132,7 @@
     "audioUrl": "/audio/Dreams.mp3",
     "imageUrl": "/image/Viettel.jpg",
     "likes": 267,
-    "comments": 43
+    "comments": 43,
+    "readTime": 10
   }
 ]
