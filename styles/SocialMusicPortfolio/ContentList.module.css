@@ -106,6 +106,7 @@
 .card:hover .playIcon {
   opacity: 1;
   transform: scale(1);
+  color: #fff;
 }
 
 /* focus effects */

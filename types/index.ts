@@ -1,5 +1,5 @@
 export interface ContentItem {
-  id?: string;
+  id: string;
   title?: string;
   altTitle?: string;
   category?: "about" | "projects" | "experience";

@@ -7,8 +7,8 @@ type PageProps = {
 
 export default function Page(promise: PageProps) {
   const { params } = promise;
-  console.log("minhdz", params);
-  console.log("minhdz", articleData);
+  // console.log("minhdz", params);
+  // console.log("minhdz", articleData);
   return <ArticleClient params={params} />; // or pass just id if you prefer
 }
 
