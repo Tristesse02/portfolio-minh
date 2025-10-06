@@ -7,6 +7,7 @@ import React, {
 } from "react";
 import { Card } from "@/components/ui/card";
 import styles from "../../styles/SocialMusicPortfolio/TestimonialCenterStage.module.css";
+import { User } from "lucide-react";
 
 export type TestimonialItem = {
   id: string;
@@ -128,11 +129,20 @@ export default function TestimonialCenterStage({
                 aria-pressed={isActive}
               >
                 <div className={styles.head}>
-                  <img
-                    src={t.avatar || "/placeholder.svg?height=64&width=64"}
-                    alt=""
-                    className={styles.avatar}
-                  />
+                  {t.avatar ? (
+                    <img
+                      src={t.avatar}
+                      alt={t.name}
+                      className={styles.avatar}
+                    />
+                  ) : (
+                    <div className={styles.avatarFallback}>
+                      <User
+                        className="w-4 h-4 text-white/70"
+                        strokeWidth={1.5}
+                      />
+                    </div>
+                  )}
                   <div className={styles.meta}>
                     <div className={styles.name}>{t.name}</div>
                     <div className={styles.role}>

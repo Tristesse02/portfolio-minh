@@ -16,6 +16,7 @@ import rawContentItems from "@/data/contentItems.json" assert { type: "json" };
 import fallbackTestimonial from "@/data/testimonials.json" assert { type: "json" };
 import FloatingMusicPlayer from "./FloatingMusicPlayer";
 import TestimonialCenterStage from "./TestimonialCenterStage";
+import SiteFooter from "./SiteFooter"; // adjust path if needed
 
 type Testimonial = {
   id: string;
@@ -157,7 +158,6 @@ export default function SocialMusicPortfolio() {
           <TabNav activeTab={activeTab} setActiveTab={setActiveTab} />
         </div>
       </header>
-
       <div className={styles.pageContent}>
         <div className={styles.centerCol}>
           <Player
@@ -219,6 +219,7 @@ export default function SocialMusicPortfolio() {
         onPlayPause={handlePlayPause}
         dominantColor={dominantColor}
       /> */}
+      <SiteFooter accent={dominantColor} />
     </div>
   );
 }
