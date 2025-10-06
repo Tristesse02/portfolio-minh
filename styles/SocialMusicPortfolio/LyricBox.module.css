@@ -1,0 +1,85 @@
+.lyricBox {
+  max-width: 68ch;
+  height: 100%;
+  padding: 0 1.25rem;
+  overflow: auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  -webkit-mask-image: linear-gradient(
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
+  mask-image: linear-gradient(transparent, black 8%, black 92%, transparent);
+}
+
+.content {
+  width: 100%;
+}
+
+.title {
+  font-size: clamp(1.25rem, 2.4vw, 1.5rem);
+  line-height: 1.2;
+  font-weight: 700;
+  margin: 0 0 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.body {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  margin-bottom: 1.25rem;
+}
+
+.body p {
+  margin: 0 0 0.6rem;
+}
+
+.body p:last-child {
+  margin-bottom: 0;
+}
+
+.chorus {
+  font-style: italic;
+}
+
+.cta {
+  margin-bottom: 1rem;
+}
+
+.cta a {
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity 0.2s ease;
+  filter: brightness(0.8)
+}
+
+.cta a:hover {
+  filter: brightness(1);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.5rem;
+}
+
+.tag {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.15rem 0.4rem;
+  border-radius: 0.35rem;
+  border: 1px solid currentColor;
+  opacity: 0.7;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta a {
+    transition: none;
+  }
+}

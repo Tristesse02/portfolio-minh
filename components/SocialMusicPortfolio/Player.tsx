@@ -9,6 +9,8 @@ import { Pause, Play, Volume2 } from "lucide-react";
 import Slider from "../../components/ui/Slider";
 import styles from "../../styles/SocialMusicPortfolio/Player.module.css";
 
+import LyricBox from "./LyricBox";
+
 const MAX_BACKDROP_OPACITY = 0.55;
 interface Props {
   content: ContentItem;
@@ -306,10 +308,21 @@ export default function Player({
         </div>
 
         <div className={styles.rightPanel}>
-          <div className={styles.lyricBlock}>
+          {/* <div className={styles.lyricBlock}>
             <div className={styles.lyricTitle}>{content.title}</div>
             <div className={styles.lyricDescription}>{content.description}</div>
-          </div>
+          </div> */}
+          <LyricBox
+            label="About me — Track 01"
+            title="Building with pace"
+            body={content.description}
+            tags={content.tags}
+            ctaHref="#long-read"
+            nowPlayingMeta={`Now Playing • ${formatTime(
+              currentTime
+            )} / ${formatTime(duration)}`}
+            progress={duration ? currentTime / duration : 0}
+          />
         </div>
         <audio ref={audioRef} src={content.audioUrl} preload="metadata" />
       </div>
