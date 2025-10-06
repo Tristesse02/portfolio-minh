@@ -183,7 +183,7 @@ export default function SocialMusicPortfolio() {
               <div className={styles.titleRow}>
                 <h2 className={styles.sectionTitle}>Fans</h2>
                 <span className={styles.countPill}>
-                  {testimonials.length} testimonials
+                  {testimonials.length} comments
                 </span>
               </div>
 

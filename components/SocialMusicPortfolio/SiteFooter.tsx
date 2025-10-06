@@ -46,7 +46,7 @@ export default function SiteFooter({ accent }: Props) {
 
   return (
     <footer
-      className="flex flex-col items-center justify-center mt-16 mb-8 text-gray-400 text-sm select-none"
+      className="flex flex-col items-center justify-center mt-16 mb-8 text-[#9ca3af] text-sm select-none"
       style={{ ["--accent" as any]: accent ?? "#7dd3fc" }}
     >
       <p className="mb-5 text-xs md:text-sm text-gray-500">
