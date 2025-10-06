@@ -1,12 +1,12 @@
 export interface ContentItem {
   id: string;
-  title?: string;
+  title: string;
   altTitle?: string;
   category?: "about" | "projects" | "experience";
   tags?: string[];
-  description?: string;
+  description: string;
   audioUrl?: string;
-  imageUrl?: string;
+  imageUrl: string;
   likes?: number;
   comments?: number;
   percentage?: number;
