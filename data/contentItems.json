@@ -1,23 +1,17 @@
 [
   {
-    "id": "about-me",
-    "title": "About me",
+    "id": "a-coder-is-born",
+    "title": "A Coder Is Born",
     "altTitle": "2002 - Anne Marie",
     "category": "about",
-    "tags": [
-      "Full-stack",
-      "Creativity",
-      "Innovation",
-      "VR/XR",
-      "Dynamic Programming"
-    ],
-    "description": "Hey there — welcome to my space!\n I love building meaningful things that make life a little easier and more delightful. I'm passionate about fast-paced environments, creative problem-solving, and crafting experiences that not only work well, but look interesting too. :))",
+    "tags": ["Full-stack", "Product Impact", "AI/ML", "Human Centered"],
+    "description": "Frontend, fullstack, ML — I'm Minh, a grad student at UMass Amherst who loves exploring the full spectrum of tech. Whether it's helping 25K+ users land jobs through AI-powered resume tools, co-founding Beatcode (2K+ competitive coders, used by ICPC coaches), or building VR assistants for seniors, I'm all about making tech more human.",
     "audioUrl": "/audio/2002.mp3",
     "imageUrl": "/image/AboutMe.jpg",
     "likes": 124,
     "comments": 23,
     "percentage": 60,
-    "readTime": 10
+    "readTime": 3
   },
   {
     "id": "free-time",

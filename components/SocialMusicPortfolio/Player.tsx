@@ -314,7 +314,7 @@ export default function Player({
           </div> */}
           <LyricBox
             label="About me — Track 01"
-            title="Building with pace"
+            title={content.title}
             body={content.description}
             tags={content.tags}
             ctaHref="#long-read"
