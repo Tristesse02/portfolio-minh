@@ -44,29 +44,32 @@ export default function LyricBox({
   return (
     <aside className={styles.lyricBox} aria-label="Lyric teaser">
       <div className={styles.content}>
-        <h2 className={styles.title}>{title}</h2>
-
-        <div className={styles.body} role="doc-introduction">
-          {stanzas.map((p, i) => (
-            <p key={i} className={i === 1 ? styles.chorus : undefined}>
-              {p}
-            </p>
-          ))}
-        </div>
-
-        <div className={styles.cta}>
-          <a href={ctaHref}>{ctaLabel}</a>
-        </div>
-
-        {tags.length > 0 && (
-          <div className={styles.tags} aria-label="tags">
-            {tags.slice(0, 5).map((t) => (
-              <span className={styles.tag} key={t}>
-                {t}
-              </span>
+        <div className={styles.main}>
+          <h2 className={styles.title}>{title}</h2>
+          <div className={styles.body} role="doc-introduction">
+            {stanzas.map((p, i) => (
+              <p key={i} className={i === 1 ? styles.chorus : undefined}>
+                {p}
+              </p>
             ))}
           </div>
-        )}
+        </div>
+
+        <div className={styles.footer}>
+          {tags.length > 0 && (
+            <div className={styles.tags} aria-label="tags">
+              {tags.slice(0, 5).map((t) => (
+                <span className={styles.tag} key={t}>
+                  {t}
+                </span>
+              ))}
+            </div>
+          )}
+
+          <a className={styles.cta} href={ctaHref}>
+            {ctaLabel}
+          </a>
+        </div>
       </div>
     </aside>
   );

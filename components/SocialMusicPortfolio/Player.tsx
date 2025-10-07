@@ -308,10 +308,6 @@ export default function Player({
         </div>
 
         <div className={styles.rightPanel}>
-          {/* <div className={styles.lyricBlock}>
-            <div className={styles.lyricTitle}>{content.title}</div>
-            <div className={styles.lyricDescription}>{content.description}</div>
-          </div> */}
           <LyricBox
             label="About me — Track 01"
             title={content.title}

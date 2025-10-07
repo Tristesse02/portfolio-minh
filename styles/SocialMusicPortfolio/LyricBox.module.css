@@ -1,29 +1,42 @@
+/* container stays the same */
 .lyricBox {
   max-width: 68ch;
   height: 100%;
-  padding: 0 1.25rem;
-  overflow: auto;
+  padding: 0.75rem 0.75rem;
+  /* overflow: auto; */
   position: relative;
-  display: flex;
+  display: block;
   align-items: center;
-  -webkit-mask-image: linear-gradient(
-    transparent,
-    black 8%,
-    black 92%,
-    transparent
-  );
-  mask-image: linear-gradient(transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: none;
+  mask-image: none;
 }
 
+/* ✨ make inner column fill height so we can pin the footer */
 .content {
+  display: grid;
+  grid-template-rows: 1fr auto; /* elastic middle + pinned footer */
+  min-height: 100%;
   width: 100%;
 }
 
+.main {
+  align-self: center; /* vertical centering when there's space */
+  justify-self: start; /* keep left-aligned text */
+  max-width: 60ch; /* nice readable width */
+}
+
+@media (max-width: 768px) {
+  .main {
+    align-self: start;
+  }
+}
+
+/* header/body unchanged */
 .title {
   font-size: clamp(1.25rem, 2.4vw, 1.5rem);
   line-height: 1.2;
   font-weight: 700;
-  margin: 0 0 1rem;
+  margin: 0 0 1.25rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -33,42 +46,38 @@
   font-size: 0.95rem;
   line-height: 1.65;
   margin-bottom: 1.25rem;
+  /* display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+  overflow: hidden; */
 }
-
 .body p {
   margin: 0 0 0.6rem;
 }
-
 .body p:last-child {
   margin-bottom: 0;
 }
-
 .chorus {
   font-style: italic;
 }
 
-.cta {
-  margin-bottom: 1rem;
+/* 📌 pinned footer */
+.footer {
+  margin-top: 0; /* push to bottom */
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* tags left, CTA right */
+  gap: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08); /* thinking of removing this... */
 }
 
-.cta a {
-  font-weight: 600;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  transition: opacity 0.2s ease;
-  filter: brightness(0.8)
-}
-
-.cta a:hover {
-  filter: brightness(1);
-}
-
+/* tags */
 .tags {
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem 0.5rem;
 }
-
 .tag {
   font-size: 0.75rem;
   font-weight: 500;
@@ -78,8 +87,31 @@
   opacity: 0.7;
 }
 
+/* CTA (anchor now) */
+.cta {
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+  filter: brightness(0.8);
+  white-space: nowrap;
+}
+.cta:hover {
+  filter: brightness(1);
+  transform: translateX(2px);
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .cta a {
+  .cta {
     transition: none;
+  }
+}
+
+/* 📱 optional: on small screens, let footer stack to save space */
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
   }
 }
