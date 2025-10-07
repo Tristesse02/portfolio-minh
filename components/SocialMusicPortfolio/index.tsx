@@ -3,7 +3,7 @@
 
 import { ContentItem } from "@/types";
 import { UserPlus } from "lucide-react";
-import { useState, useEffect, useMemo, useRef } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 import TabNav from "@/components/SocialMusicPortfolio/TabNav";
 import Player from "@/components/SocialMusicPortfolio/Player";
@@ -14,7 +14,6 @@ import FanInviteModal from "../modal/FanInviteModal";
 
 import rawContentItems from "@/data/contentItems.json" assert { type: "json" };
 import fallbackTestimonial from "@/data/testimonials.json" assert { type: "json" };
-import FloatingMusicPlayer from "./FloatingMusicPlayer";
 import TestimonialCenterStage from "./TestimonialCenterStage";
 import SiteFooter from "./SiteFooter"; // adjust path if needed
 
@@ -45,7 +44,6 @@ export default function SocialMusicPortfolio() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration] = useState(180);
-  const [isScrolled, setIsScrolled] = useState(false);
   const [dominantColor, setDominantColor] = useState<string | null>(null);
 
   const filteredContent = contentItems.filter(
@@ -142,7 +140,9 @@ export default function SocialMusicPortfolio() {
         className={`${styles.header}`}
         data-solid={scrollOpacity > 0.4 ? "1" : "0"}
         style={{
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           ["--headerAlpha" as any]: scrollOpacity,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           ["--accent" as any]: dominantColor ?? "#7dd3fc", // cyan accent (↔ change here)
           boxShadow: `0 8px 24px rgba(0,0,0,${0.2 * scrollOpacity})`,
           zIndex: 50,
@@ -176,7 +176,6 @@ export default function SocialMusicPortfolio() {
             currentId={currentContent.id}
             onSelect={handleSelectContent}
             isPlaying={isPlaying}
-            dominantColor={dominantColor}
           />
           <section className={styles.section}>
             <div className={styles.sectionHeader}>

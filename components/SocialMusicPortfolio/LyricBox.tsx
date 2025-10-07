@@ -5,25 +5,19 @@ import React, { useMemo } from "react";
 import styles from "../../styles/SocialMusicPortfolio/LyricBox.module.css";
 
 type Props = {
-  label?: string;
   title: string;
   body: string;
   tags?: string[];
   ctaHref?: string;
   ctaLabel?: string;
-  nowPlayingMeta?: string;
-  progress?: number;
 };
 
 export default function LyricBox({
-  label,
   title,
   body,
   tags = [],
   ctaHref = "#",
   ctaLabel = "Read full story →",
-  nowPlayingMeta,
-  progress = 0,
 }: Props) {
   const stanzas = useMemo(() => {
     const byBreak = body

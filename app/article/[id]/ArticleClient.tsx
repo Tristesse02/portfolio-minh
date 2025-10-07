@@ -5,9 +5,6 @@ import {
   Play,
   Pause,
   ArrowLeft,
-  Heart,
-  MessageCircle,
-  Share,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";

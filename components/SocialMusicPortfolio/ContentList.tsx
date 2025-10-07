@@ -13,7 +13,6 @@ interface Props {
   currentId: string;
   onSelect: (item: ContentItem) => void;
   isPlaying: boolean;
-  dominantColor: string | null;
 }
 
 export default function ContentList({
@@ -21,7 +20,6 @@ export default function ContentList({
   currentId,
   onSelect,
   isPlaying,
-  dominantColor,
 }: Props) {
   // const rawTint = dominantColor ?? "#a855f7";
   const rawTint = "#ffffff";

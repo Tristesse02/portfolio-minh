@@ -309,15 +309,10 @@ export default function Player({
 
         <div className={styles.rightPanel}>
           <LyricBox
-            label="About me — Track 01"
             title={content.title}
             body={content.description}
             tags={content.tags}
             ctaHref="#long-read"
-            nowPlayingMeta={`Now Playing • ${formatTime(
-              currentTime
-            )} / ${formatTime(duration)}`}
-            progress={duration ? currentTime / duration : 0}
           />
         </div>
         <audio ref={audioRef} src={content.audioUrl} preload="metadata" />

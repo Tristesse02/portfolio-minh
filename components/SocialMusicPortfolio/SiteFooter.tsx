@@ -47,6 +47,7 @@ export default function SiteFooter({ accent }: Props) {
   return (
     <footer
       className="flex flex-col items-center justify-center mt-16 mb-8 text-[#9ca3af] text-sm select-none"
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       style={{ ["--accent" as any]: accent ?? "#7dd3fc" }}
     >
       <p className="mb-5 text-xs md:text-sm text-gray-500">
