@@ -4,6 +4,7 @@
 import { ContentItem } from "@/types";
 import { UserPlus } from "lucide-react";
 import { useState, useEffect, useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 import TabNav from "@/components/SocialMusicPortfolio/TabNav";
 import Player from "@/components/SocialMusicPortfolio/Player";
@@ -45,6 +46,7 @@ export default function SocialMusicPortfolio() {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration] = useState(180);
   const [dominantColor, setDominantColor] = useState<string | null>(null);
+  const [showIntro, setShowIntro] = useState(true);
 
   const filteredContent = contentItems.filter(
     (item) => item.category === activeTab
@@ -119,6 +121,11 @@ export default function SocialMusicPortfolio() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const timer = setTimeout(() => setShowIntro(false), 3500);
+    return () => clearTimeout(timer);
+  }, []);
+
   const mappedTestimonials: Testimonial[] = useMemo(
     () =>
       testimonials.map((t, i) => ({
@@ -135,89 +142,155 @@ export default function SocialMusicPortfolio() {
   );
 
   return (
-    <div className={styles.pageWrapper}>
-      <header
-        className={`${styles.header}`}
-        data-solid={scrollOpacity > 0.4 ? "1" : "0"}
-        style={{
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          ["--headerAlpha" as any]: scrollOpacity,
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          ["--accent" as any]: dominantColor ?? "#7dd3fc", // cyan accent (↔ change here)
-          boxShadow: `0 8px 24px rgba(0,0,0,${0.2 * scrollOpacity})`,
-          zIndex: 50,
-        }}
-      >
-        <div className={styles.headerInner}>
-          <div className={styles.logo}>
-            <div className={styles.logoBox}>
-              <span className={styles.logoText}>MV</span>
-            </div>
-            <a
-              href="/MinhVu_resume.pdf" // <-- replace with your actual resume link
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-semibold text-lg hover:underline cursor-pointer"
+    <>
+      <AnimatePresence>
+        {showIntro && (
+          <motion.div
+            className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black text-white"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
+            onClick={() => setShowIntro(false)}
+          >
+            <motion.h1
+              className="text-4xl md:text-5xl font-semibold mb-4 text-center"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 1 }}
             >
-              Minh Vu
-            </a>
-          </div>
-          <TabNav activeTab={activeTab} setActiveTab={setActiveTab} />
-        </div>
-      </header>
-      <div className={styles.pageContent}>
-        <div className={styles.centerCol}>
-          <Player
-            content={currentContent}
-            isPlaying={isPlaying}
-            currentTime={currentTime}
-            duration={duration}
-            onPlayPause={handlePlayPause}
-            setDominantColor={setDominantColor}
-          />
-          <h2 className={styles.contentHeading}>
-            {activeTab === "about" ? "Blogs" : activeTab}
-          </h2>
-          <ContentList
-            items={filteredContent}
-            currentId={currentContent.id}
-            onSelect={handleSelectContent}
-            isPlaying={isPlaying}
-          />
-          <section className={styles.section}>
-            <div className={styles.sectionHeader}>
-              <div className={styles.titleRow}>
-                <h2 className={styles.sectionTitle}>Fans</h2>
-                <span className={styles.countPill}>
-                  {testimonials.length} comments
-                </span>
-              </div>
+              Hi, welcome to Minh Vu’s portfolio!
+            </motion.h1>
 
-              <button className={styles.inviteBtn} onClick={handleTestimonial}>
-                <UserPlus width={16} height={16} />
-                <span className={styles.inviteLabel}>Leave a shout-out</span>
-              </button>
-            </div>
-            <TestimonialCenterStage
-              items={mappedTestimonials}
-              dominantColor={dominantColor}
+            <motion.p
+              className="text-lg text-gray-300 text-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.4, duration: 1 }}
+            >
+              Sit down, listen to some music, and learn more about Minh.
+            </motion.p>
+
+            <motion.div
+              className="mt-8 text-sm text-gray-500"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 2 }}
             />
-          </section>
-        </div>
-      </div>
-      <FanInviteModal
-        isOpen={showInviteModal}
-        onClose={() => setShowInviteModal(false)}
-        onAuthorized={() => {
-          setShowInviteModal(false);
-          setIsModalOpen(true);
-        }}
-      />
-      <TestimonialModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      />
-      {/* <FloatingMusicPlayer
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <motion.div className={styles.pageWrapper}>
+        <motion.header
+          className={`${styles.header}`}
+          data-solid={scrollOpacity > 0.4 ? "1" : "0"}
+          style={{
+            ["--headerAlpha" as any]: scrollOpacity,
+            ["--accent" as any]: dominantColor ?? "#7dd3fc",
+            boxShadow: `0 8px 24px rgba(0,0,0,${0.2 * scrollOpacity})`,
+            zIndex: 50,
+            pointerEvents: showIntro ? "none" : "auto",
+          }}
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: showIntro ? 0 : 1, y: showIntro ? -20 : 0 }}
+          transition={{
+            delay: showIntro ? 3.5 : 0.3,
+            duration: 0.8,
+            ease: "easeOut",
+          }}
+        >
+          <div className={styles.headerInner}>
+            <div className={styles.logo}>
+              <div className={styles.logoBox}>
+                <span className={styles.logoText}>MV</span>
+              </div>
+              <a
+                href="/MinhVu_resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-lg hover:underline cursor-pointer"
+              >
+                Minh Vu
+              </a>
+            </div>
+            <TabNav activeTab={activeTab} setActiveTab={setActiveTab} />
+          </div>
+        </motion.header>
+        <div className={styles.pageContent}>
+          <div className={styles.centerCol}>
+            <motion.div
+              initial={{ scale: 1.2, y: 50, opacity: 0 }}
+              animate={{
+                scale: showIntro ? 1.2 : 1,
+                y: showIntro ? 50 : 0,
+                opacity: showIntro ? 0 : 1,
+              }}
+              transition={{
+                delay: showIntro ? 3.2 : 0.2,
+                duration: 1.2,
+                ease: "easeInOut",
+              }}
+            >
+              <Player
+                content={currentContent}
+                isPlaying={isPlaying}
+                currentTime={currentTime}
+                duration={duration}
+                onPlayPause={handlePlayPause}
+                setDominantColor={setDominantColor}
+              />
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: showIntro ? 0 : 1, y: showIntro ? 30 : 0 }}
+              transition={{ delay: 1, duration: 1.2, ease: "easeOut" }}
+            >
+              <h2 className={styles.contentHeading}>
+                {activeTab === "about" ? "Blogs" : activeTab}
+              </h2>
+              <ContentList
+                items={filteredContent}
+                currentId={currentContent.id}
+                onSelect={handleSelectContent}
+                isPlaying={isPlaying}
+              />
+              <section className={styles.section}>
+                <div className={styles.sectionHeader}>
+                  <div className={styles.titleRow}>
+                    <h2 className={styles.sectionTitle}>Fans</h2>
+                    <span className={styles.countPill}>
+                      {testimonials.length} comments
+                    </span>
+                  </div>
+
+                  <button
+                    className={styles.inviteBtn}
+                    onClick={handleTestimonial}
+                  >
+                    <UserPlus width={16} height={16} />
+                    <span className={styles.inviteLabel}>
+                      Leave a shout-out
+                    </span>
+                  </button>
+                </div>
+                <TestimonialCenterStage
+                  items={mappedTestimonials}
+                  dominantColor={dominantColor}
+                />
+              </section>
+              <FanInviteModal
+                isOpen={showInviteModal}
+                onClose={() => setShowInviteModal(false)}
+                onAuthorized={() => {
+                  setShowInviteModal(false);
+                  setIsModalOpen(true);
+                }}
+              />
+              <TestimonialModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+              />
+              {/* <FloatingMusicPlayer
         content={currentContent}
         isPlaying={isPlaying}
         currentTime={currentTime}
@@ -225,7 +298,11 @@ export default function SocialMusicPortfolio() {
         onPlayPause={handlePlayPause}
         dominantColor={dominantColor}
       /> */}
-      <SiteFooter accent={dominantColor} />
-    </div>
+              <SiteFooter accent={dominantColor} />
+            </motion.div>
+          </div>
+        </div>
+      </motion.div>
+    </>
   );
 }
