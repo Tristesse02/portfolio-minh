@@ -185,7 +185,9 @@ export default function SocialMusicPortfolio() {
           className={`${styles.header}`}
           data-solid={scrollOpacity > 0.4 ? "1" : "0"}
           style={{
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             ["--headerAlpha" as any]: scrollOpacity,
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             ["--accent" as any]: dominantColor ?? "#7dd3fc",
             boxShadow: `0 8px 24px rgba(0,0,0,${0.2 * scrollOpacity})`,
             zIndex: 50,
