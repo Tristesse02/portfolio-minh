@@ -153,7 +153,14 @@ export default function SocialMusicPortfolio() {
             <div className={styles.logoBox}>
               <span className={styles.logoText}>MV</span>
             </div>
-            <span className="font-semibold text-lg">Minh Vu</span>
+            <a
+              href="/MinhVu_resume.pdf" // <-- replace with your actual resume link
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-lg hover:underline cursor-pointer"
+            >
+              Minh Vu
+            </a>
           </div>
           <TabNav activeTab={activeTab} setActiveTab={setActiveTab} />
         </div>

@@ -52,7 +52,14 @@ export default function SiteFooter({ accent }: Props) {
     >
       <p className="mb-5 text-xs md:text-sm text-gray-500">
         © {new Date().getFullYear()} Minh Vu · Designed & developed by{" "}
-        <span className="font-medium text-white">Minh Vu</span>
+        <a
+          href="/MinhVu_resume.pdf" // <-- replace with your actual resume link
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-medium text-white hover:underline cursor-pointer"
+        >
+          Minh Vu
+        </a>
       </p>
 
       <div className="mb-3 flex items-center gap-6 text-gray-500">
