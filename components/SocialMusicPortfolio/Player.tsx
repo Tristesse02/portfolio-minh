@@ -34,8 +34,9 @@ export default function Player({
   const imgRef = useRef<HTMLImageElement>(null);
   const [backdropUrl, setBackdropUrl] = useState(content.imageUrl);
   const [nextBackdropUrl, setNextBackdropUrl] = useState<string | null>(null);
-  const [backdropOpacity, setBackdropOpacity] = useState(MAX_BACKDROP_OPACITY);
+  const [backdropOpacity, setBackdropOpacity] = useState(0);
   const [nextOpacity, setNextOpacity] = useState(0);
+  const didInitRef = useRef(false);
 
   useEffect(() => {
     if (isPlaying) {
@@ -44,6 +45,48 @@ export default function Player({
       audioRef.current?.pause();
     }
   }, [isPlaying, content]);
+
+  useEffect(() => {
+    if (didInitRef.current) return;
+    didInitRef.current = true;
+
+    const max = MAX_BACKDROP_OPACITY;
+
+    // Prepare the incoming layer (new backdrop)
+    setNextBackdropUrl(content.imageUrl);
+    setNextOpacity(0);
+
+    let raf: number | null = null;
+    const start = () => {
+      let t = 0;
+      const step = () => {
+        t = Math.min(t + 0.005, 1); // your chosen speed
+        setNextOpacity(Math.min(t * max, max));
+
+        if (t < 1) {
+          raf = requestAnimationFrame(step);
+        } else {
+          // promote overlay to base and clear overlay
+          setBackdropUrl(content.imageUrl);
+          setBackdropOpacity(max);
+          setNextBackdropUrl(null);
+          setNextOpacity(0);
+          raf = null;
+        }
+      };
+      raf = requestAnimationFrame(step);
+    };
+
+    // ---- WAIT HERE BEFORE rAF ----
+    const delayMs = 5000; // tweak this
+    const tid = window.setTimeout(start, delayMs);
+
+    // Cleanup both timeout and rAF
+    return () => {
+      window.clearTimeout(tid);
+      if (raf != null) cancelAnimationFrame(raf);
+    };
+  }, []);
 
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);
@@ -94,24 +137,6 @@ export default function Player({
 
       frame = requestAnimationFrame(step);
       return () => cancelAnimationFrame(frame);
-    }
-  }, [content.imageUrl]);
-
-  // useEffect(() => {
-  //   if (content.imageUrl !== backdropUrl) {
-  //     setBackdropUrl(content.imageUrl);
-  //   }
-  // }, [content.imageUrl]);
-
-  useEffect(() => {
-    if (content.imageUrl !== backdropUrl) {
-      setNextBackdropUrl(content.imageUrl);
-      const timeout = setTimeout(() => {
-        setBackdropUrl(content.imageUrl); // update image after fade
-        setNextBackdropUrl(null);
-      }, 6000); // 10s
-
-      return () => clearTimeout(timeout);
     }
   }, [content.imageUrl]);
 
