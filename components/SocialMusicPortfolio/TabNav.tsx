@@ -10,22 +10,32 @@ interface Props {
 
 export default function TabNav({ activeTab, setActiveTab }: Props) {
   return (
-    <nav className={styles.nav}>
-      {(["about", "projects", "experience"] as const).map((tab) => (
-        <button
-          key={tab}
-          onClick={() => setActiveTab(tab)}
-          className={`${styles.tabButton} ${
-            activeTab === tab ? styles.tabButtonActive : ""
-          }`}
+    <>
+      <nav className={styles.nav}>
+        {(["about", "projects", "experience"] as const).map((tab) => (
+          <button
+            key={tab}
+            onClick={() => setActiveTab(tab)}
+            className={`${styles.tabButton} ${
+              activeTab === tab ? styles.tabButtonActive : ""
+            }`}
+          >
+            {tab === "about"
+              ? "Blogs"
+              : tab === "projects"
+              ? "Projects"
+              : "Work Experiences"}
+          </button>
+        ))}
+        <a
+          href="/MinhVu_resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`${styles.tabButton} ${styles.resumeLink}`}
         >
-          {tab === "about"
-            ? "Blogs"
-            : tab === "projects"
-            ? "Projects"
-            : "Work Experiences"}
-        </button>
-      ))}
-    </nav>
+          Resume
+        </a>
+      </nav>
+    </>
   );
 }
