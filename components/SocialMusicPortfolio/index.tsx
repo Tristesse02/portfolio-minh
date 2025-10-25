@@ -47,6 +47,7 @@ export default function SocialMusicPortfolio() {
   const [duration] = useState(180);
   const [dominantColor, setDominantColor] = useState<string | null>(null);
   const [showIntro, setShowIntro] = useState(true);
+  const [introGone, setIntroGone] = useState(false);
 
   const filteredContent = contentItems.filter(
     (item) => item.category === activeTab
@@ -143,7 +144,7 @@ export default function SocialMusicPortfolio() {
 
   return (
     <>
-      <AnimatePresence>
+      <AnimatePresence onExitComplete={() => setIntroGone(true)}>
         {showIntro && (
           <motion.div
             className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black text-white"
@@ -240,6 +241,7 @@ export default function SocialMusicPortfolio() {
                 duration={duration}
                 onPlayPause={handlePlayPause}
                 setDominantColor={setDominantColor}
+                runInitialReveal={introGone}
               />
             </motion.div>
             <motion.div

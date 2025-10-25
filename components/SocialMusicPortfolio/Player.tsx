@@ -19,6 +19,7 @@ interface Props {
   duration: number;
   onPlayPause: () => void;
   setDominantColor: (color: string | null) => void;
+  runInitialReveal?: boolean;
 }
 
 export default function Player({
@@ -28,6 +29,7 @@ export default function Player({
   duration,
   onPlayPause,
   setDominantColor,
+  runInitialReveal,
 }: Props) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [volume, setVolume] = useState([23]);
@@ -45,48 +47,6 @@ export default function Player({
       audioRef.current?.pause();
     }
   }, [isPlaying, content]);
-
-  useEffect(() => {
-    if (didInitRef.current) return;
-    didInitRef.current = true;
-
-    const max = MAX_BACKDROP_OPACITY;
-
-    // Prepare the incoming layer (new backdrop)
-    setNextBackdropUrl(content.imageUrl);
-    setNextOpacity(0);
-
-    let raf: number | null = null;
-    const start = () => {
-      let t = 0;
-      const step = () => {
-        t = Math.min(t + 0.005, 1); // your chosen speed
-        setNextOpacity(Math.min(t * max, max));
-
-        if (t < 1) {
-          raf = requestAnimationFrame(step);
-        } else {
-          // promote overlay to base and clear overlay
-          setBackdropUrl(content.imageUrl);
-          setBackdropOpacity(max);
-          setNextBackdropUrl(null);
-          setNextOpacity(0);
-          raf = null;
-        }
-      };
-      raf = requestAnimationFrame(step);
-    };
-
-    // ---- WAIT HERE BEFORE rAF ----
-    const delayMs = 5000; // tweak this
-    const tid = window.setTimeout(start, delayMs);
-
-    // Cleanup both timeout and rAF
-    return () => {
-      window.clearTimeout(tid);
-      if (raf != null) cancelAnimationFrame(raf);
-    };
-  }, []);
 
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);
@@ -108,6 +68,40 @@ export default function Player({
       audio.volume = volume[0] / 200;
     }
   }, []);
+
+  useEffect(() => {
+    if (!runInitialReveal || didInitRef.current) return;
+    didInitRef.current = true;
+
+    // prepare overlay
+    const max = MAX_BACKDROP_OPACITY;
+    setNextBackdropUrl(content.imageUrl);
+    setNextOpacity(0);
+
+    let raf: number | null = null;
+    // kick off on next paint to ensure the overlay is truly gone
+    requestAnimationFrame(() => {
+      let t = 0;
+      const step = () => {
+        t = Math.min(t + 0.005, 1);
+        setNextOpacity(Math.min(t * max, max));
+        if (t < 1) {
+          raf = requestAnimationFrame(step);
+        } else {
+          setBackdropUrl(content.imageUrl);
+          setBackdropOpacity(max);
+          setNextBackdropUrl(null);
+          setNextOpacity(0);
+          raf = null;
+        }
+      };
+      raf = requestAnimationFrame(step);
+    });
+
+    return () => {
+      if (raf != null) cancelAnimationFrame(raf);
+    };
+  }, [runInitialReveal, content.imageUrl]);
 
   useEffect(() => {
     if (content.imageUrl !== backdropUrl) {
