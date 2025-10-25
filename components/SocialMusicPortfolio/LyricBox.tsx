@@ -60,9 +60,9 @@ export default function LyricBox({
             </div>
           )}
 
-          <a className={styles.cta} href={ctaHref}>
+          {/* <a className={styles.cta} href={ctaHref}>
             {ctaLabel}
-          </a>
+          </a> */}
         </div>
       </div>
     </aside>

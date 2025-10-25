@@ -18,26 +18,28 @@
     "title": "My Free Time",
     "altTitle": "Let Her Go - Passenger",
     "category": "about",
+    "tags": ["Piano", "Chess", "Soccer"],
     "description": "When I’m not coding, you’ll probably find me at the piano.\n The song you’re hearing is one of my proudest covers — Let Her Go - played during my very first year of learning! 😁 Enjoy~\n Outside of music, I’ve hit a 2000 rating on Chess.com, I’m a huge Barça fan, and playing soccer 🎹♟⚽",
     "audioUrl": "/audio/LetHerGo.mp3",
     "imageUrl": "/image/Piano.jpg",
     "likes": 89,
     "comments": 15,
     "percentage": 40,
-    "readTime": 10
+    "readTime": 2
   },
   {
     "id": "umass",
     "title": "My Time at UMass",
     "altTitle": "Adventure - JJD",
     "category": "about",
+    "tags": ["UMass Amherst", "Win Hackathons", "Researcher"],
     "description": "Four years at UMass have given me unforgettable memories, lifelong friendships, meaningful lessons — and some seriously good food.\n I’ve had the privilege to learn from world-class educators and grow alongside some truly brilliant minds.\n I’m proud to be a UMass student, and even prouder to be part of its alumni community. 💜🌲",
     "audioUrl": "/audio/Adventure.mp3",
     "imageUrl": "/image/UMass.jpg",
     "likes": 156,
     "comments": 31,
     "percentage": 60,
-    "readTime": 10
+    "readTime": 1
   },
   {
     "id": "beatcode",
