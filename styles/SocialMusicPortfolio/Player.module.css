@@ -56,16 +56,33 @@
   gap: 1rem;
   margin-bottom: 0.5rem;
 }
+
 .playButton {
   width: 2.5rem;
   height: 2.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 9999px;
-  background-color: white;
-  color: black;
+  background: transparent; /* no white blob */
+  border: none;
+  color: #fff;
   cursor: pointer;
+  border-radius: 100px;
+}
+.playButton:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.playButton :global(svg) {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+.playIcon {
+  width: 2.25rem;
+  height: 2.25rem;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
+  opacity: 0.92;
+  transition: transform 0.18s ease, opacity 0.18s ease;
 }
 .progressBar {
   flex: 1;
