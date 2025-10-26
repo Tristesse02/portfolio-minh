@@ -32,7 +32,7 @@
     "title": "My Time at UMass",
     "altTitle": "Adventure - JJD",
     "category": "about",
-    "tags": ["UMass Amherst", "Win Hackathons", "Researching"],
+    "tags": ["Code", "Win Hackathons", "Research"],
     "description": "Four years at UMass have given me unforgettable memories, lifelong friendships, meaningful lessons — and some seriously good food.\n I’ve had the privilege to learn from world-class educators and grow alongside some truly brilliant minds.\n I’m proud to be a UMass student, and even prouder to be part of its alumni community. 💜🌲",
     "audioUrl": "/audio/Adventure.mp3",
     "imageUrl": "/image/UMass.jpg",
@@ -46,89 +46,123 @@
     "title": "BeatCode",
     "altTitle": "Blinding Lights - The Weeknd",
     "category": "projects",
+    "tags": [
+      "Leetcode 2.0",
+      "Docker",
+      "PostgreSQL",
+      "Svelte",
+      "Python",
+      "FastAPI",
+      "Auth 2.0",
+      "UI/UX"
+    ],
     "description": "A dual-battle coding game inspired by LeetCode and Tetris, built in collaboration with my best friend, Bao Dang.\n I had the chance to work with FastAPI, PostgreSQL, Auth, PassLib, and explore the frontend using Svelte.\n The project launch exceeded our expectations: 300+ accounts, 1,000+ unique visitors, and 4,800+ page views — all within the first 12 hours of deployment.",
     "audioUrl": "/audio/BlindingLight.mp3",
     "imageUrl": "/image/BowDong.jpg",
     "likes": 203,
     "comments": 45,
     "percentage": 0,
-    "readTime": 10
+    "readTime": 3
   },
   {
     "id": "cloud-cue",
     "title": "Cloud Cue",
     "altTitle": "Creep - Postmodern Jukebox",
     "category": "projects",
+    "tags": ["AI/ML", "AWS", "Voice Transcript", "LLMs", "Flask", "JavaScript"],
     "description": "A real-time word suggestion tool built to support non-native speakers during interviews, inspired by the struggles I saw many international students face.\n I got to work with AWS Transcribe, Facebook OPT-1.3b, S3, and visualized predictions through a live word cloud interface.\n The tool transcribes speech on the fly and suggests likely next words based on context — helping users speak more confidently, one word at a time.",
     "audioUrl": "/audio/Creep.mp3",
     "imageUrl": "/image/CloudCue.jpg",
     "likes": 178,
     "comments": 38,
     "percentage": 0,
-    "readTime": 10
+    "readTime": 3
   },
   {
     "id": "resume-agent",
     "title": "Resume Agent",
     "altTitle": "I Wish You Love - Laufey",
     "category": "projects",
+    "tags": ["AI/ML", "Agent", "Prompt Engineer", "MCP", "BashScript","TypeScript", "Python"],
     "description": "An agent that help CS students tailor their resume!\n The pipeline? Simple!\n Describe me what you have done for the work, as detailed as possible, and whoalah, a standard CS resume is created!",
     "audioUrl": "/audio/IWishYouLove.mp3",
     "imageUrl": "/image/WhyDoMen.jpg",
     "likes": 234,
     "comments": 52,
     "percentage": 20,
-    "readTime": 10
+    "readTime": 2
   },
   {
     "id": "ohess",
     "title": "OhEss (OS)",
     "altTitle": "My way - Frank Sinatra",
     "category": "projects",
+    "tags": ["UI/UX", "Operating System", "Linux", "TypeScript", "TailwindCSS"],
     "description": "An inspired window 10 interface that runs on Webpage interface 😲\n It not just mimic the interface of the Window 10, but you can actually runs program there! Try out Linux and Kolibri 😉\n The project is heavily inspired by JSLinux by Fabrice Bellard's",
     "audioUrl": "/audio/MyWay.mp3",
     "imageUrl": "/image/Bed.jpg",
     "likes": 234,
     "comments": 52,
     "percentage": 10,
-    "readTime": 10
+    "readTime": 2.5
   },
   {
     "id": "avocademy",
-    "title": "Avocademy (YC 22)",
+    "title": "Avocademy (YC 22) – Jack Applies",
     "altTitle": "The Power Of Love - Francesco Parrino",
     "category": "experience",
-    "description": "A scrappy little startup with a big goal: make job hunting as effortless as possible.\n We built a platform that crawls new job listings daily, lets users bookmark the ones they love, and auto-fills applications like magic.\n I teamed up with the crew using FastAPI, PostgreSQL, Playwright, and the OpenAI API to pull out the juicy details — all wrapped in a smooth CI/CD flow and shipped on Vercel. ",
+    "tags": [
+      "Full-stack",
+      "AWS",
+      "Azure",
+      "API",
+      "RabbitMQ",
+      "Kubernetes",
+      "Github Action",
+      "Webflow",
+      "TypeScript",
+      "TailwindCSS"
+    ],
+    "description": "A little startup with a big goal: make job hunting as effortless as possible.\n Collaborating with 3 others foundation engineers, I built a platform that crawls new job listings daily, lets users bookmark the ones they love, and auto-fills applications like magic.\n I teamed up with the crew using FastAPI, PostgreSQL, Playwright, and the OpenAI API to pull out the juicy details — all wrapped in a smooth CI/CD flow and shipped on Vercel. ",
     "audioUrl": "/audio/ThePowerOfLove.mp3",
     "imageUrl": "/image/Plushies.jpg",
     "likes": 312,
     "comments": 67,
     "percentage": 30,
-    "readTime": 10
+    "readTime": 2
   },
   {
     "id": "fpt-software",
     "title": "FPT Software",
     "altTitle": "Close To The Sun - TheFatRat",
     "category": "experience",
+    "tags": [
+      "Software Engineer",
+      "TypeScript",
+      "Pub-Sub",
+      "JavaScript-SDK",
+      "HTML",
+      "CSS"
+    ],
     "description": "My second-year summer was full of excitement working at FPT Software, where I helped build a full-cycle management webpage for the Japanese Pharmacists Association using NgRx and RxJS.\n With support from an amazing boss and team, I tackled 20,000+ data bindings between frontend and backend — turning a once-daunting task into something smooth and scalable.\n Along the way, I squashed bugs, streamlined workflows, and grew a ton as a developer.",
     "audioUrl": "/audio/CloseToTheSun.mp3",
     "imageUrl": "/image/fpt.jpg",
     "likes": 289,
     "comments": 54,
     "percentage": 10,
-    "readTime": 10
+    "readTime": 2
   },
   {
     "id": "viettelai",
     "title": "Viettel AI",
     "altTitle": "Dreams - Tobu",
     "category": "experience",
+    "tags": ["GraphRAG", "ML", "LLMs", "Search Engine"],
     "description": "My third-year summer was all about NLP — working with Viettel AI to build out the pipeline for a Vietnamese chatbot model.",
     "audioUrl": "/audio/Dreams.mp3",
     "imageUrl": "/image/Viettel.jpg",
     "likes": 267,
     "comments": 43,
-    "readTime": 10
+    "readTime": 2
   }
 ]

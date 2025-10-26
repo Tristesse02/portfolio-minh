@@ -39,12 +39,10 @@
   z-index: -1;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(8px);
-  -webkit-mask-image: linear-gradient(to top, black 30%, transparent 100%),
-    linear-gradient(to right, black 97%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, black 30%, transparent 100%);
   -webkit-mask-composite: destination-in;
   mask-composite: intersect;
-  mask-image: linear-gradient(to top, black 30%, transparent 100%),
-    linear-gradient(to right, black 97%, transparent 100%);
+  mask-image: linear-gradient(to top, black 30%, transparent 100%);
 }
 .controlsInner {
   position: relative;
