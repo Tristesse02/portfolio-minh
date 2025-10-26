@@ -16,7 +16,9 @@ export default function LyricBox({
   title,
   body,
   tags = [],
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ctaHref = "#",
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ctaLabel = "Read full story →",
 }: Props) {
   const stanzas = useMemo(() => {

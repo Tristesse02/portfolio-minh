@@ -3,6 +3,7 @@ import items from "@/data/contentItems.json";
 const site = "https://tminhvu.xyz";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const anchors = (items as any[]).map((it) => ({
     url: `${site}#${it.id}`,
     lastModified: new Date(),
