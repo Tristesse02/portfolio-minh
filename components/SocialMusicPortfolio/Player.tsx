@@ -83,7 +83,7 @@ export default function Player({
     requestAnimationFrame(() => {
       let t = 0;
       const step = () => {
-        t = Math.min(t + 0.005, 1);
+        t = Math.min(t + 0.002, 1);
         setNextOpacity(Math.min(t * max, max));
         if (t < 1) {
           raf = requestAnimationFrame(step);
@@ -114,7 +114,7 @@ export default function Player({
       setBackdropOpacity(maxOpacity); // Reset fade-out
 
       const step = () => {
-        opacityProgress += 0.005; // adjust speed here
+        opacityProgress += 0.002; // adjust speed here
 
         setNextOpacity(Math.min(opacityProgress * maxOpacity, maxOpacity));
         setBackdropOpacity(Math.max((1 - opacityProgress) * maxOpacity, 0));
