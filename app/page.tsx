@@ -4,44 +4,36 @@ import items from "@/data/contentItems.json";
 
 const site = "https://tminhvu.xyz";
 
+// map your cards to CreativeWork objects
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function toCreativeWork(item: any) {
-  const url = `${site}#${item.id}`;
+function toCreativeWork(it: any) {
+  const url = `${site}#${it.id}`;
   const timeRequired =
-    typeof item.readTime === "number"
-      ? `PT${Math.round(item.readTime)}M`
+    typeof it.readTime === "number"
+      ? `PT${Math.round(it.readTime)}M`
       : undefined;
 
   return {
     "@type": "CreativeWork",
-    name: item.title,
-    alternateName: item.altTitle,
-    description: item.description,
+    name: it.title,
+    alternateName: it.altTitle,
+    description: it.description,
     image:
-      item.imageUrl &&
-      (item.imageUrl.startsWith("http") ? item.imageUrl : site + item.imageUrl),
+      it.imageUrl &&
+      (it.imageUrl.startsWith("http") ? it.imageUrl : site + it.imageUrl),
     inLanguage: "en",
-    keywords: (item.tags || []).join(", "),
-    about: item.category,
+    keywords: (it.tags || []).join(", "),
+    about: it.category,
     url: url,
     ...(timeRequired ? { timeRequired: timeRequired } : {}),
   };
 }
 
 export default function HomePage() {
-  const itemList = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: "Highlights — Blogs, Projects, Experiences",
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    itemListElement: (items as any[]).map((it, idx) => ({
-      "@type": "ListItem",
-      position: idx + 1,
-      url: `${site}#${it.id}`,
-      item: toCreativeWork(it),
-    })),
-  };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const creativeWorks = (items as any[]).map(toCreativeWork);
 
+  // Use WebPage + hasPart (no ItemList → no Carousel validation)
   const webPage = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -49,7 +41,7 @@ export default function HomePage() {
     url: site,
     isPartOf: { "@type": "WebSite", url: site },
     about: { "@id": site + "#me" },
-    mainEntity: itemList,
+    hasPart: creativeWorks,
     subjectOf: {
       "@type": "CreativeWork",
       name: "Resume (PDF)",
@@ -64,8 +56,13 @@ export default function HomePage() {
   return (
     <>
       <SocialMusicPortfolio />
-      <JsonLd json={itemList} />
+      {/* Single JSON-LD block is enough: the CreativeWorks are embedded via hasPart */}
       <JsonLd json={webPage} />
+
+      {/* OPTIONAL: also emit each CreativeWork as its own node (keeps validators happy too) */}
+      {creativeWorks.map((cw, i) => (
+        <JsonLd key={i} json={{ "@context": "https://schema.org", ...cw }} />
+      ))}
     </>
   );
 }
