@@ -72,7 +72,7 @@ export default function FloatingMusicPlayer({
           {/* RIGHT: quick links */}
           <nav className="flex justify-end gap-2">
             <a
-              href="https://www.linkedin.com/in/minhvu02/"
+              href="https://www.linkedin.com/in/tminhvu/"
               target="_blank"
               rel="noreferrer"
               aria-label="LinkedIn"
