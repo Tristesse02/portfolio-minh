@@ -40,10 +40,9 @@
 }
 
 .scroller {
-  /* keep your existing props */
   position: relative;
-  isolation: isolate; /* new stacking context */
-  padding-inline: 12px;
+  isolation: isolate;
+  padding-inline:0.6rem; /* space for arrows */
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: clamp(280px, 52vw, 520px);
@@ -51,11 +50,27 @@
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-padding: 12px;
-  padding: 0.5rem 0.25rem; /* a bit more vertical padding so bottom shadows show */
+  padding-block: 0.5rem;
 
-  /* REMOVE this — it clips shadows at the sides */
-  /* mask-image: linear-gradient(to right, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%); */
+  /* ✨ BOTH-SIDES FADE MASK ✨ */
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 40px,
+    black calc(100% - 40px),
+    transparent
+  );
+
+  /* for Safari */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 40px,
+    black calc(100% - 40px),
+    transparent
+  );
 }
+
 .scroller::-webkit-scrollbar {
   display: none;
 }
@@ -128,7 +143,6 @@
   color: rgba(255, 255, 255, 0.8);
 }
 
-.wrapper,
-.scroller {
+.wrapper {
   overflow: visible;
 }
