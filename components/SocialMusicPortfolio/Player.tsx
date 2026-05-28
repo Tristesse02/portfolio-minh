@@ -1,6 +1,15 @@
 import Image from "next/image";
-// @ts-expect-error ColorThief has no types, imported as CommonJS default
-import ColorThief from "colorthief";
+import ColorThiefModule from "colorthief";
+
+interface ColorThiefInstance {
+  getPalette(img: HTMLImageElement, colorCount?: number): [number, number, number][];
+  getColor(img: HTMLImageElement): [number, number, number];
+}
+interface ColorThiefConstructor {
+  new (): ColorThiefInstance;
+}
+const ColorThief = ((ColorThiefModule as unknown as { default: ColorThiefConstructor }).default ??
+  ColorThiefModule) as unknown as ColorThiefConstructor;
 import { ContentItem } from "@/types";
 // import { FastAverageColor } from "fast-average-color";
 import { useEffect, useRef, useState } from "react";
